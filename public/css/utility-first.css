@@ -1,0 +1,18 @@
+.flex-column {display: flex; flex-direction: column;}
+.flex-row {display: flex; flex-direction: row;}
+
+.width-100 {width:100%;}
+.height-100 {height:100%;}
+
+.align-center {align-items: center;}
+
+.margin-bot-5 {margin-bottom: 5px;}
+.margin-top-5 {margin-top: 5px;}
+.margin-left-5 {margin-left: 5px;}
+.margin-right-5 {margin-right: 5px;}
+
+.border {border: solid 1px #c2c2c2;}
+
+.justify-between {justify-content: space-between;}
+.justify-around {justify-content: space-around;}
+

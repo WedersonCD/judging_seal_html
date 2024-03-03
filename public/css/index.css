@@ -1,0 +1,17 @@
+.content-lastExperiences-item {
+    width: 100px;
+    height: 100px;
+    border: solid 1px #000;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.content-lastExperiences {
+    display: flex;
+    height: 400px;
+    align-items: center;
+    vertical-align: middle;
+    flex-direction: column;
+    justify-content: space-around;
+}
