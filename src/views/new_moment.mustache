@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    {{> partials/head}}
+    <link rel="stylesheet" href="/css/index.css">
+    </head>    
+    <body>
+    <div class="content flex-column height-100 width-100">
+        <div class=" content-rating height-100 flex-row" _="init 
+            repeat in [1,2,3,4,5]
+                if it <= {{rate}} then
+                    set start to '🌟'
+                else
+                     set start to '⭐'
+                end
+
+                make a <div.content-rating-start/> called contentRating
+                    put start into it
+                
+                put contentRating at end of me
+            end
+        end
+        ">
+        </div>
+        <input type="text" class="content-momentName margin-bot-5 border-none border-bottom" placeholder="name your moment">
+        <input type="text" class="content-momentHashtag border-none border-bottom" placeholder="# your moment">
+
+        <div class="margin-top-5" _="on click
+            set name to .content-momentName.value
+            set momentHashtag to .content-momentHashtag.value
+            set link to '/new_moment?rate={{rate}},name='+name+',hashtag='+momentHashtag 
+            fetch `${link}` with method:'POST'
+            log its result
+        
+        end">
+            cria essa porcaria
+        </div>
+    <div>
+
+    </body>
+</html>

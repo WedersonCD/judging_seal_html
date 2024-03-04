@@ -16,3 +16,7 @@
 .justify-between {justify-content: space-between;}
 .justify-around {justify-content: space-around;}
 
+.border-none { border:none;}
+
+.border-bottom { border-bottom:1px solid #c2c2c2;}
+
