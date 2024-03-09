@@ -6,6 +6,7 @@
     </head>    
     <body>
     <div class="content flex-column height-100 width-100">
+        <a href='/'>GO BACK</a>
         <div class=" content-rating height-100 flex-row" _="init 
             repeat in [1,2,3,4,5]
                 if it <= {{rate}} then
@@ -28,10 +29,11 @@
         <div class="margin-top-5" _="on click
             set name to .content-momentName.value
             set momentHashtag to .content-momentHashtag.value
-            set link to '/new_moment?rate={{rate}},name='+name+',hashtag='+momentHashtag 
-            fetch `${link}` with method:'POST'
-            log its result
-        
+            set rate to {{rate}}
+            js(rate,name,momentHashtag)
+                return '/new_moment?rate='+encodeURIComponent(rate)+'&name='+encodeURIComponent(name)+'&momentHashtag='+encodeURIComponent(momentHashtag)
+            end put the result into encodedLink
+            fetch `${encodedLink}` with method:'POST'
         end">
             cria essa porcaria
         </div>

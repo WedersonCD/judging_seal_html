@@ -15,3 +15,18 @@
     flex-direction: column;
     justify-content: space-around;
 }
+
+.content-lastExperiences-moments {
+    width: 100%;
+    max-height: 400px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.content-lastExperiences-lastExperience-moment {
+    min-height: 80px;
+    width: 100%;
+    border-bottom: 1px solid #000;
+    justify-content: space-around;
+}

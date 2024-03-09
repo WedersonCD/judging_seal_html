@@ -1,35 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    {{> partials/head}}
-    <link rel="stylesheet" href="/css/index.css">
+{{> partials/head}}
+<link rel="stylesheet" href="/css/index.css">
+
 <body>
-    <div class="content height-100">
-        <div class="content-stars flex-column align-center">
-            <div class="content-stars-title margin-bot-5">
-                How was your last experience?
-            </div>
-            <div class="content-stars-rating flex-row">
-                <div class="content-stars-rating-start"><a href='/new_moment?rate=1'>⭐</a></div>
-                <div class="content-stars-rating-start"><a href='/new_moment?rate=2'>⭐</a></div>
-                <div class="content-stars-rating-start"><a href='/new_moment?rate=3'>⭐</a></div>
-                <div class="content-stars-rating-start"><a href='/new_moment?rate=4'>⭐</a></div>
-                <div class="content-stars-rating-start"><a href='/new_moment?rate=5'>⭐</a></div>
-            </div>
-        </div>
-        <hr>
-        <div class="content-lastExperiences">
-            <spam>Your lastest experiences</spam>
-            <div class="flex-row justify-around width-100">
-                <div class="content-lastExperiences-item">Songs</div>
-                <div class="content-lastExperiences-item">Movies</div>
-            </div>
-            <div class="flex-row justify-around width-100">
-                <div class="content-lastExperiences-item">Places</div>
-                <div class="content-lastExperiences-item">Books</div>
-            </div>
-        </div>
+  <div class="content height-100">
+    <div class="content-stars flex-column align-center">
+      <div class="content-stars-title margin-bot-5">
+        How was your last experience?
+      </div>
+      <div class="content-stars-rating flex-row">
+        <div class="content-stars-rating-start"><a href='/new_moment?rate=1'>⭐</a></div>
+        <div class="content-stars-rating-start"><a href='/new_moment?rate=2'>⭐</a></div>
+        <div class="content-stars-rating-start"><a href='/new_moment?rate=3'>⭐</a></div>
+        <div class="content-stars-rating-start"><a href='/new_moment?rate=4'>⭐</a></div>
+        <div class="content-stars-rating-start"><a href='/new_moment?rate=5'>⭐</a></div>
+      </div>
     </div>
+    <hr>
+    <div class="content-lastExperiences">
+      <spam>Your lastest experiences</spam>
+      <div class="flex-row justify-around width-100">
+        <div class="content-lastExperiences-item">Songs</div>
+        <div class="content-lastExperiences-item">Movies</div>
+      </div>
+      <div class="flex-row justify-around width-100">
+        <div class="content-lastExperiences-item">Places</div>
+        <div class="content-lastExperiences-item">Books</div>
+      </div>
+      <div class="content-lastExperiences-moments">
+        <div class="content-lastExperiences-moments-title width-100 text-align-center">
+            <h3>Yours Moments !</h3>
+        </div>
+        {{#currentMoments}}
+        <div class="content-lastExperiences-lastExperience">
+          <div class="content-lastExperiences-lastExperience-moment flex-column width-100">
+            <div class="content-lastExperiences-lastExperience-moment-header justify-between flex-row">
+              <div class="content-lastExperiences-lastExperience-moment-header-name"><b>{{moment_name}}</b></div>
+              <div class="content-lastExperiences-lastExperience-moment-header-starts">{{moment_rate}} stars</div>
+            </div>
+            <div class="content-lastExperiences-lastExperience-moment-hashtags flex-row">
+              {{#moment_hashtags}}
+              <span class="hashtag">#{{.}}</span>
+              {{/moment_hashtags}}
+            </div>
+          </div>
+        </div>
+        {{/currentMoments}}
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
