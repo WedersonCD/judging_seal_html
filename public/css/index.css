@@ -9,7 +9,6 @@
 
 .content-lastExperiences {
     display: flex;
-    height: 400px;
     align-items: center;
     vertical-align: middle;
     flex-direction: column;
@@ -18,7 +17,7 @@
 
 .content-lastExperiences-moments {
     width: 100%;
-    max-height: 400px;
+    max-height: 600px;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;

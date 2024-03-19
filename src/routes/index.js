@@ -16,6 +16,11 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
+router.get('/teste',async(req,res)=>{
+    res.render('teste');
+    
+})
+
 router.post('/login', async (req, res) => {
 
     try {
@@ -25,19 +30,17 @@ router.post('/login', async (req, res) => {
         const response = await dataService.login({ user_name: user_name, user_psw: user_psw });
 
         if(!response)
-            return res.status(401)
-
+            return res.status(401).send();
+        
         res.cookie('user_token', response.token)
-
-        res.redirect('/index')
+        res.status(201).send()
 
     } catch (err) {
         console.error(err)
-        res.status(400).json({ message: err })
+        res.status(400).send()
     }
 
 })
-
 
 router.get('/index', async (req, res) => {
 

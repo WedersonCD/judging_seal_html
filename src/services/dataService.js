@@ -30,14 +30,13 @@ dataService.login = async (user) =>{
             },
             body: JSON.stringify(user),
         });
-        
+
         if(response.ok)
             return await response.json();
         
-
+        console.log('passou aqui no login')
     } catch (error) {
         console.error('Error Login moment:', error.message);
-        throw error;
     }
 }
 
