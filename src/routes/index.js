@@ -13,6 +13,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/login', (req, res) => {
+    res.clearCookie('user_token');
     res.render('login');
 });
 
@@ -24,6 +25,7 @@ router.get('/teste',async(req,res)=>{
 router.post('/login', async (req, res) => {
 
     try {
+        
         const user_name = req.body.user_name;
         const user_psw = req.body.user_psw;
 
@@ -53,7 +55,7 @@ router.get('/index', async (req, res) => {
         if (currentMoments)
             return res.render('index', { 'currentMoments': currentMoments });
 
-        res.status(400).send('deu ruim')
+        res.render('index', { 'currentMoments': [] });
 
 
     } catch (err) {
@@ -67,7 +69,7 @@ router.get('/new_moment', function (req, res) {
     res.render('new_moment', req.query);
 });
 
-router.post('/new_moment', function async (req, res) {
+router.post('/new_moment', async (req, res) =>{
 
     const hashtags = req.query.momentHashtag.split('#').filter(item => item.length > 1)
 
@@ -91,5 +93,24 @@ router.post('/new_moment', function async (req, res) {
 });
 
 
+router.post('/new_user',async (req,res)=>{
+
+    try {
+        const user_name = req.body.user_name;
+        const user_psw = req.body.user_psw;
+        const response = await dataService.newUser({ user_name: user_name, user_psw: user_psw });
+
+        if(!response)
+            return res.status(401).send();
+        
+        res.cookie('user_token', response.token)
+        res.status(201).send()
+
+    } catch (err) {
+        console.error(err)
+        res.status(400).send()
+    }
+
+});
 
 module.exports = router;

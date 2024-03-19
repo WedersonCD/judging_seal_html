@@ -39,8 +39,38 @@
                 remove .color-red from h1
             end
         end
-
         
+        on fetch:beforeRequest(headers)
+            set headers['Content-Type'] to 'application/x-www-form-urlencoded'
+        end
+        ">
+
+        <input type="button" value="Register me !!!!" class="margin-top-5" _="
+        on click
+
+            set user_name to #user_name.value
+            set user_psw to #user_psw.value
+            js(user_name,user_psw)
+                return 'user_name='+encodeURIComponent(user_name)+'&user_psw='+encodeURIComponent(user_psw)
+            end put the result into encodedLink
+            log encodedLink
+            fetch /new_user with method: 'POST', body: `${encodedLink}`
+        end
+
+        on fetch:afterResponse
+            if detail.response.ok then
+                go to url /index
+            else
+                set h1 to <h1/>
+                add .color-red to h1
+                set previusText to h1's innerText
+                set h1's innerText to '!😠!😠!😠!😠!😠!😠!😠!'
+                wait 3s
+                set h1's innerText to previusText
+                remove .color-red from h1
+            end
+        end
+
         on fetch:beforeRequest(headers)
             set headers['Content-Type'] to 'application/x-www-form-urlencoded'
         end
