@@ -3,18 +3,66 @@ var router = express.Router();
 const dataService = require('../services/dataService');
 
 
-router.get('/',  async (req, res) =>{
-    const currentMoments = await dataService.getAllMoments();
-    res.render('index',{'currentMoments':currentMoments});
+router.get('/', (req, res) => {
+
+    if (!req.parsedCookies)
+        res.redirect('login');
+    else
+        res.redirect('/index')
+
 });
+
+router.get('/login', (req, res) => {
+    res.render('login');
+});
+
+router.post('/login', async (req, res) => {
+
+    try {
+        const user_name = req.body.user_name;
+        const user_psw = req.body.user_psw;
+
+        const response = await dataService.login({ user_name: user_name, user_psw: user_psw });
+        res.cookie('user_token', response.token)
+
+        res.redirect('/index')
+
+    } catch (err) {
+        console.error(err)
+        res.status(400).json({ message: err })
+    }
+
+})
+
+
+router.get('/index', async (req, res) => {
+
+    if(!req.parsedCookies.user_token)
+        res.redirect('/login');
+
+    try {
+        const currentMoments = await dataService.getAllMoments(req.parsedCookies.user_token);
+
+        if (currentMoments)
+            return res.render('index', { 'currentMoments': currentMoments });
+
+        res.status(400).send('deu ruim')
+
+
+    } catch (err) {
+        console.error(err)
+        res.status(400).json({ message: err })
+    }
+});
+
 
 router.get('/new_moment', function (req, res) {
     res.render('new_moment', req.query);
 });
 
-router.post('/new_moment', function (req, res) {
-    
-    const hashtags=req.query.momentHashtag.split('#').filter(item => item.length>1)
+router.post('/new_moment', function async (req, res) {
+
+    const hashtags = req.query.momentHashtag.split('#').filter(item => item.length > 1)
 
     const newMoment = {
         moment_name: req.query.name,
@@ -22,14 +70,19 @@ router.post('/new_moment', function (req, res) {
         moment_hashtags: hashtags,
     };
 
-    dataService.createMoment(newMoment)
-        .then((createdMoment) => {
-            console.log('New moment created!');
-            res.json(createdMoment)
-        })
-        .catch((err) => {
-            res.statusCode(500)
-        });
+    try{
+        const response= dataService.createMoment(req.parsedCookies.user_token,newMoment)
+        
+        res.send(201).json(response)
+        res.redirect('/index');
+
+    }catch(err){
+        console.error(err)
+        res.status(500)
+    }
+
 });
+
+
 
 module.exports = router;
