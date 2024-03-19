@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    {{> partials/head}}
+    <link rel="stylesheet" href="/css/index.css">
+    <script>
+        console.log('bom dia')
+        async function chama(){
+            const resposta = await fetch('/login',{method: 'POST',body: 'user_name=errado&user_psw=tambem',header: {'Content-Type': 'application/x-www-form-urlencoded'}})
+            console.log(resposta)
+        }
+
+    </script>
+    </head>    
+    <body>
+        <h1>olha marilene<h1>
+        <input type="button" value="aham" onclick="chama()"/>
+    </body>
+</html>

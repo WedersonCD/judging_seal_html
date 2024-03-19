@@ -31,11 +31,12 @@ dataService.login = async (user) =>{
             body: JSON.stringify(user),
         });
 
-        return await response.json()
-
+        if(response.ok)
+            return await response.json();
+        
+        console.log('passou aqui no login')
     } catch (error) {
-        console.error('Error creating moment:', error.message);
-        throw error;
+        console.error('Error Login moment:', error.message);
     }
 }
 

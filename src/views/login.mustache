@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="/css/index.css">
 
 <body>
-    <form action="/login" method='POST' class="flex-column width-100 text-align-center justify-around">
+    <form class="flex-column width-100 text-align-center justify-around">
         <h1>Judging Seal</h1>
 
         <label for="user_name">User</label>
@@ -14,7 +14,37 @@
         <label for="user_psw">Password</label>
         <input type="password" id="user_psw" name="user_psw">   
 
-        <input type="submit" value="Start Judging!!!!" class="margin-top-5">
+        <input type="button" value="Start Judging!!!!" class="margin-top-5" _="
+        on click
+            
+            set user_name to #user_name.value
+            set user_psw to #user_psw.value
+            js(user_name,user_psw)
+                return 'user_name='+encodeURIComponent(user_name)+'&user_psw='+encodeURIComponent(user_psw)
+            end put the result into encodedLink
+
+            fetch /login with method: 'POST', body: `${encodedLink}`
+        end
+
+        on fetch:afterResponse
+            if detail.response.ok then
+                go to url /index
+            else
+                set h1 to <h1/>
+                add .color-red to h1
+                set previusText to h1's innerText
+                set h1's innerText to 'Type it right 😠!!!!!!'
+                wait 3s
+                set h1's innerText to previusText
+                remove .color-red from h1
+            end
+        end
+
+        
+        on fetch:beforeRequest(headers)
+            set headers['Content-Type'] to 'application/x-www-form-urlencoded'
+        end
+        ">
     </form>
 
 </body>
