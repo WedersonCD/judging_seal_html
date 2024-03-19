@@ -30,11 +30,13 @@ dataService.login = async (user) =>{
             },
             body: JSON.stringify(user),
         });
-
-        return await response.json()
+        
+        if(response.ok)
+            return await response.json();
+        
 
     } catch (error) {
-        console.error('Error creating moment:', error.message);
+        console.error('Error Login moment:', error.message);
         throw error;
     }
 }

@@ -23,6 +23,10 @@ router.post('/login', async (req, res) => {
         const user_psw = req.body.user_psw;
 
         const response = await dataService.login({ user_name: user_name, user_psw: user_psw });
+
+        if(!response)
+            return res.status(401)
+
         res.cookie('user_token', response.token)
 
         res.redirect('/index')
