@@ -3,20 +3,20 @@ const mustacheExpress = require('mustache-express');
 const app = express();
 
 //middleware
-const parseCookieMiddleware = require(__dirname+'/src/middleware/parseCookieMiddleware')
+const parseCookieMiddleware = require(__dirname+'/middleware/parseCookieMiddleware')
 
 // Register '.mustache' extension with The Mustache Express
 app.engine('mustache', mustacheExpress());
 
 app.set('view engine', 'mustache');
-app.set('views', __dirname + '/src/views');
+app.set('views', __dirname + '/views');
 
 app.use(parseCookieMiddleware)
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 //ROUTES
-var router = require(__dirname+'/src/routes/index');
+var router = require(__dirname+'/routes/index');
 
 app.use('/', router);
 
