@@ -51,7 +51,7 @@ router.get('/index', async (req, res) => {
 
     try {
         const currentMoments = await dataService.getAllMoments(req.parsedCookies.user_token);
-
+        currentMoments.reverse()
         if (currentMoments)
             return res.render('index', { 'currentMoments': currentMoments });
 
@@ -72,11 +72,11 @@ router.get('/new_moment', function (req, res) {
 router.post('/new_moment', async (req, res) =>{
 
     const hashtags = req.query.momentHashtag.split('#').filter(item => item.length > 1)
-
+    console.log(req.query.momentDescription)
     const newMoment = {
         moment_name: req.query.name,
         moment_rate: req.query.rate,
-        moment_description: req.query.moment_description,
+        moment_description: req.query.momentDescription || '',
         moment_hashtags: hashtags
 
     };
