@@ -76,7 +76,7 @@ router.post('/new_moment', async (req, res) =>{
     const newMoment = {
         moment_name: req.query.name,
         moment_rate: req.query.rate,
-        moment_description: moment_description,
+        moment_description: req.query.moment_description,
         moment_hashtags: hashtags
 
     };
