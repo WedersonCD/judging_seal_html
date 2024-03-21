@@ -38,8 +38,15 @@
           <div class="content-lastExperiences-lastExperience-moment flex-column width-100">
             <div class="content-lastExperiences-lastExperience-moment-header justify-between flex-row">
               <div class="content-lastExperiences-lastExperience-moment-header-name"><b>{{moment_name}}</b></div>
-              <div class="content-lastExperiences-lastExperience-moment-header-starts">{{moment_rate}} stars</div>
+              <div class="content-lastExperiences-lastExperience-moment-header-starts" _="
+              init 
+                get getStars({{moment_rate}})
+                log it
+                put it into me
+              end
+              "></div>
             </div>
+            <div class="content-lastExperiences-lastExperience-moment-description">{{moment_description}}</div>
             <div class="content-lastExperiences-lastExperience-moment-hashtags flex-row">
               {{#moment_hashtags}}
               <span class="hashtag">#{{.}}</span>

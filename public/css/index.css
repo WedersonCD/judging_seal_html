@@ -23,6 +23,10 @@
     overflow-y: scroll;
 }
 
+.content-lastExperiences-lastExperience-moment-description {
+    font-size: small;
+}
+
 .content-lastExperiences-lastExperience-moment {
     min-height: 80px;
     width: 100%;

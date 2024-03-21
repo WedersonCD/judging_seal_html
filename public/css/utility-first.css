@@ -23,3 +23,5 @@
 .text-align-center { text-align: center;}
 
 .color-red { color: red};
+
+.clickable:hover {cursor:pointer}
