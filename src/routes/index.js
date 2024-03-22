@@ -84,7 +84,7 @@ router.post('/new_moment', async (req, res) =>{
     try{
         const response= dataService.createMoment(req.parsedCookies.user_token,newMoment)
         
-        res.send(201).json(response)
+        res.status(201).json(response)
         res.redirect('/index');
 
     }catch(err){
