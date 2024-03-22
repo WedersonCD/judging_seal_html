@@ -72,7 +72,6 @@ router.get('/new_moment', function (req, res) {
 router.post('/new_moment', async (req, res) =>{
 
     const hashtags = req.query.momentHashtag.split('#').filter(item => item.length > 1)
-    console.log(req.query.momentDescription)
     const newMoment = {
         moment_name: req.query.name,
         moment_rate: req.query.rate,
