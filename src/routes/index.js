@@ -72,7 +72,6 @@ router.get('/new_moment', function (req, res) {
 router.post('/new_moment', async (req, res) =>{
 
     const hashtags = req.query.momentHashtag.split('#').filter(item => item.length > 1)
-    console.log(req.query.momentDescription)
     const newMoment = {
         moment_name: req.query.name,
         moment_rate: req.query.rate,
@@ -84,8 +83,7 @@ router.post('/new_moment', async (req, res) =>{
     try{
         const response= dataService.createMoment(req.parsedCookies.user_token,newMoment)
         
-        res.send(201).json(response)
-        res.redirect('/index');
+        res.status(201).redirect('/index')
 
     }catch(err){
         console.error(err)
