@@ -51,11 +51,13 @@ router.get('/index', async (req, res) => {
 
     try {
         const currentSeals = await dataService.getAllSeals(req.parsedCookies.user_token);
-        currentSeals.reverse()
-        if (currentSeals)
-            return res.render('index', { 'currentSeals': currentSeals });
+        
+        if (!currentSeals)
+            res.render('index', { 'currentSeals': [] });
 
-        res.render('index', { 'currentSeals': [] });
+        currentSeals.reverse();
+        return res.render('index', { 'currentSeals': currentSeals });
+
 
 
     } catch (err) {

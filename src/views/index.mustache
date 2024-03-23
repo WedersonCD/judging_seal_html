@@ -35,27 +35,51 @@
         </div>
         {{#currentSeals}}
         <div class="content-lastExperiences-lastExperience">
-          <div class="content-lastExperiences-lastExperience-seal flex-column width-100">
+          <div class="content-lastExperiences-lastExperience-seal flex-column width-100" _="
+          init
+            set @sealId to '{{_id}}'
+          end
+          ">
             <div class="content-lastExperiences-lastExperience-seal-header justify-between flex-row">
               <div class="content-lastExperiences-lastExperience-seal-header-name"><b>{{seal_name}}</b></div>
               <div class="content-lastExperiences-lastExperience-seal-header-starts" _="
               init 
                 get getStars({{seal_rate}})
-                log it
                 put it into me
               end
               "></div>
             </div>
             <div class="content-lastExperiences-lastExperience-seal-description">{{seal_description}}</div>
             <div class="flex-row justify-between">
-              <div class="content-lastExperiences-lastExperience-seal-hashtags flex-row flex-7">
+              <div class="content-lastExperiences-lastExperience-seal-hashtags flex-row flex-7 margin-top-5">
                 {{#seal_hashtags}}
                 <span class="hashtag">#{{.}}</span>
                 {{/seal_hashtags}}
               </div>
               <div class="flex-row flex-1 justify-around">
-                <div class="clickable">❌</div>
-                <div class="clickable">📝</div>
+                <div class="clickable" _="
+                init
+                  set @seal-id to '{{_id}}'
+                end
+
+                on click
+                  set sealId to @seal-id
+
+                  js(sealId)
+                    return '/seals?sealId='+encodeURIComponent(sealId)''
+                  end put the result into encodedLink
+  
+                  fetch `${encodedLink}` with method:'DELETE'
+                  tell closest .content-lastExperiences-lastExperience-seal
+                    add .display-none
+                    
+                end
+                ">❌</div>
+                <div class="clickable" _="
+                init
+                  set @seal-id to '{{_id}}'
+                end
+                ">📝</div>
               </div>
             </div>
 
