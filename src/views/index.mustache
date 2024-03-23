@@ -4,18 +4,18 @@
 {{> partials/head}}
 <link rel="stylesheet" href="/css/index.css">
 
-<body _="init {{currentMoments.currentMoments}} end">
+<body _="init {{currentSeals.currentSeals}} end">
   <div class="content height-100">
     <div class="content-stars flex-column align-center">
       <div class="content-stars-title margin-bot-5">
         How was your last experience?
       </div>
       <div class="content-stars-rating flex-row">
-        <div class="content-stars-rating-start"><a href='/new_moment?rate=1'>⭐</a></div>
-        <div class="content-stars-rating-start"><a href='/new_moment?rate=2'>⭐</a></div>
-        <div class="content-stars-rating-start"><a href='/new_moment?rate=3'>⭐</a></div>
-        <div class="content-stars-rating-start"><a href='/new_moment?rate=4'>⭐</a></div>
-        <div class="content-stars-rating-start"><a href='/new_moment?rate=5'>⭐</a></div>
+        <div class="content-stars-rating-start"><a href='/new_seal?rate=1'>⭐</a></div>
+        <div class="content-stars-rating-start"><a href='/new_seal?rate=2'>⭐</a></div>
+        <div class="content-stars-rating-start"><a href='/new_seal?rate=3'>⭐</a></div>
+        <div class="content-stars-rating-start"><a href='/new_seal?rate=4'>⭐</a></div>
+        <div class="content-stars-rating-start"><a href='/new_seal?rate=5'>⭐</a></div>
       </div>
     </div>
     <hr>
@@ -29,32 +29,32 @@
         <div class="content-lastExperiences-item">Places</div>
         <div class="content-lastExperiences-item">Books</div>
       </div>
-      <div class="content-lastExperiences-moments">
-        <div class="content-lastExperiences-moments-title width-100 text-align-center">
-            <h3>Yours Moments !</h3>
+      <div class="content-lastExperiences-seals">
+        <div class="content-lastExperiences-seals-title width-100 text-align-center">
+            <h3>Yours Seals !</h3>
         </div>
-        {{#currentMoments}}
+        {{#currentSeals}}
         <div class="content-lastExperiences-lastExperience">
-          <div class="content-lastExperiences-lastExperience-moment flex-column width-100">
-            <div class="content-lastExperiences-lastExperience-moment-header justify-between flex-row">
-              <div class="content-lastExperiences-lastExperience-moment-header-name"><b>{{moment_name}}</b></div>
-              <div class="content-lastExperiences-lastExperience-moment-header-starts" _="
+          <div class="content-lastExperiences-lastExperience-seal flex-column width-100">
+            <div class="content-lastExperiences-lastExperience-seal-header justify-between flex-row">
+              <div class="content-lastExperiences-lastExperience-seal-header-name"><b>{{seal_name}}</b></div>
+              <div class="content-lastExperiences-lastExperience-seal-header-starts" _="
               init 
-                get getStars({{moment_rate}})
+                get getStars({{seal_rate}})
                 log it
                 put it into me
               end
               "></div>
             </div>
-            <div class="content-lastExperiences-lastExperience-moment-description">{{moment_description}}</div>
-            <div class="content-lastExperiences-lastExperience-moment-hashtags flex-row">
-              {{#moment_hashtags}}
+            <div class="content-lastExperiences-lastExperience-seal-description">{{seal_description}}</div>
+            <div class="content-lastExperiences-lastExperience-seal-hashtags flex-row">
+              {{#seal_hashtags}}
               <span class="hashtag">#{{.}}</span>
-              {{/moment_hashtags}}
+              {{/seal_hashtags}}
             </div>
           </div>
         </div>
-        {{/currentMoments}}
+        {{/currentSeals}}
       </div>
     </div>
   </div>

@@ -50,12 +50,12 @@ router.get('/index', async (req, res) => {
         res.redirect('/login');
 
     try {
-        const currentMoments = await dataService.getAllMoments(req.parsedCookies.user_token);
-        currentMoments.reverse()
-        if (currentMoments)
-            return res.render('index', { 'currentMoments': currentMoments });
+        const currentSeals = await dataService.getAllSeals(req.parsedCookies.user_token);
+        currentSeals.reverse()
+        if (currentSeals)
+            return res.render('index', { 'currentSeals': currentSeals });
 
-        res.render('index', { 'currentMoments': [] });
+        res.render('index', { 'currentSeals': [] });
 
 
     } catch (err) {
@@ -65,24 +65,24 @@ router.get('/index', async (req, res) => {
 });
 
 
-router.get('/new_moment', function (req, res) {
-    res.render('new_moment', req.query);
+router.get('/new_seal', function (req, res) {
+    res.render('new_seal', req.query);
 });
 
-router.post('/new_moment', async (req, res) =>{
+router.post('/new_seal', async (req, res) =>{
 
-    const hashtags = req.query.momentHashtag.split('#').filter(item => item.length > 1)
-    console.log(req.query.momentDescription)
-    const newMoment = {
-        moment_name: req.query.name,
-        moment_rate: req.query.rate,
-        moment_description: req.query.momentDescription || '',
-        moment_hashtags: hashtags
+    const hashtags = req.query.sealHashtag.split('#').filter(item => item.length > 1)
+    console.log(req.query.sealDescription)
+    const newSeal = {
+        seal_name: req.query.name,
+        seal_rate: req.query.rate,
+        seal_description: req.query.sealDescription || '',
+        seal_hashtags: hashtags
 
     };
 
     try{
-        const response= dataService.createMoment(req.parsedCookies.user_token,newMoment)
+        const response= dataService.createSeal(req.parsedCookies.user_token,newSeal)
         
         res.send(201).json(response)
         res.redirect('/index');
