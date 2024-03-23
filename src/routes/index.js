@@ -72,7 +72,7 @@ router.get('/new_seal', function (req, res) {
 router.post('/new_seal', async (req, res) =>{
 
     const hashtags = req.query.sealHashtag.split('#').filter(item => item.length > 1)
-    console.log(req.query.sealDescription)
+
     const newSeal = {
         seal_name: req.query.name,
         seal_rate: req.query.rate,
