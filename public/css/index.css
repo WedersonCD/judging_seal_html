@@ -25,6 +25,12 @@
 
 .content-lastExperiences-lastExperience-seal-description {
     font-size: small;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Number of lines you want to display */
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: justify;    
 }
 
 .content-lastExperiences-lastExperience-seal {
