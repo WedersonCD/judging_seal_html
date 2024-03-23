@@ -12,6 +12,8 @@ router.get('/', (req, res) => {
 
 });
 
+
+
 router.get('/login', (req, res) => {
     res.clearCookie('user_token');
     res.render('login');
@@ -66,7 +68,30 @@ router.get('/index', async (req, res) => {
     }
 });
 
+router.delete('/seals',(req,res)=>{
 
+    try {
+        const sealId = req.query.sealId;
+
+        if(!sealId)
+            return res.status(400).json({message: 'bad request missing sealId'});
+        
+        const response= dataService.deleteSeal(req.parsedCookies.user_token,sealId)
+
+        if(!response){
+            console.error('Fail in delete seal route');
+            res.status(400).send();
+        }
+
+        res.status(200).send();
+
+    }catch(err){
+        console.error(err)
+        res.status(500).send()
+    }
+
+
+});
 router.get('/new_seal', function (req, res) {
     res.render('new_seal', req.query);
 });
@@ -89,7 +114,7 @@ router.post('/new_seal', async (req, res) =>{
 
     }catch(err){
         console.error(err)
-        res.status(500)
+        res.status(500).send()
     }
 
 });

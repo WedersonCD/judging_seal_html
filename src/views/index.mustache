@@ -66,13 +66,14 @@
                   set sealId to @seal-id
 
                   js(sealId)
-                    return '/seals?sealId='+encodeURIComponent(sealId)''
+                    return '/seals?sealId='+encodeURIComponent(sealId)
                   end put the result into encodedLink
   
                   fetch `${encodedLink}` with method:'DELETE'
+
                   tell closest .content-lastExperiences-lastExperience-seal
                     add .display-none
-                    
+
                 end
                 ">❌</div>
                 <div class="clickable" _="
