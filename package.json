@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon -e js,mustache,html,json,yml,_hs --env-file=.env src/app.js"
   },
   "keywords": [],
   "author": "",

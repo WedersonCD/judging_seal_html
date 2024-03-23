@@ -53,7 +53,6 @@ dataService.login = async (user) =>{
         if(response.ok)
             return await response.json();
         
-        console.log('passou aqui no login')
     } catch (error) {
         console.error('Error Login seal:', error.message);
     }

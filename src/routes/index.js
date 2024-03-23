@@ -78,14 +78,12 @@ router.post('/new_seal', async (req, res) =>{
         seal_rate: req.query.rate,
         seal_description: req.query.sealDescription || '',
         seal_hashtags: hashtags
-
     };
 
     try{
         const response= dataService.createSeal(req.parsedCookies.user_token,newSeal)
         
-        res.send(201).json(response)
-        res.redirect('/index');
+        res.status(201).redirect('/index')
 
     }catch(err){
         console.error(err)
