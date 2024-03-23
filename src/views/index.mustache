@@ -47,11 +47,18 @@
               "></div>
             </div>
             <div class="content-lastExperiences-lastExperience-seal-description">{{seal_description}}</div>
-            <div class="content-lastExperiences-lastExperience-seal-hashtags flex-row">
-              {{#seal_hashtags}}
-              <span class="hashtag">#{{.}}</span>
-              {{/seal_hashtags}}
+            <div class="flex-row justify-between">
+              <div class="content-lastExperiences-lastExperience-seal-hashtags flex-row flex-7">
+                {{#seal_hashtags}}
+                <span class="hashtag">#{{.}}</span>
+                {{/seal_hashtags}}
+              </div>
+              <div class="flex-row flex-1 justify-around">
+                <div class="clickable">❌</div>
+                <div class="clickable">📝</div>
+              </div>
             </div>
+
           </div>
         </div>
         {{/currentSeals}}
