@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    {{> partials/head}}
+    <link rel="stylesheet" href="/css/new_seal.css">
+    </head>    
+    <body>
+    <div class="content flex-column height-100 width-100">
+        <a href='/'>GO BACK</a>
+        <div class=" content-rating height-100 flex-row" _="init 
+            call getStars({{rate}})
+            put it into me
+        end
+        ">
+        </div>
+        <div class="flex-column justify-around">
+            <input type="text" class="content-sealName margin-bot-5 border-none border-bottom" placeholder="Title your seal">
+            <input type="textarea" class="content-sealDescription border-none border-bottom" placeholder="Wanna talk more about it?">
+            <input type="text" class="content-sealHashtag border-none border-bottom" placeholder="# your seal">
+        </div>
+
+        <input value="cria essa porcaria 😠!!" type="button" class="margin-top-5 clickable" _="on click
+            set name to .content-sealName.value
+            set sealHashtag to .content-sealHashtag.value
+            set sealDescription to .content-sealDescription.value
+            set rate to {{rate}}
+            js(rate,name,sealHashtag,sealDescription)
+                return '/new_seal?rate='+encodeURIComponent(rate)+'&name='+encodeURIComponent(name)+'&sealHashtag='+encodeURIComponent(sealHashtag)+'&sealDescription='+encodeURIComponent(sealDescription)
+            end put the result into encodedLink
+            fetch `${encodedLink}` with method:'POST'
+            go to url /index
+        end">
+    <div>
+
+    </body>
+</html>
