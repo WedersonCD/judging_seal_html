@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/app.js",
-    "dev": "nodemon -e js,mustache,html,json,yml,_hs --env-file=.env src/app.js"
+    "dev": "nodemon -e js,mustache,html,json,yml,_hs,css --env-file=.env src/app.js"
   },
   "keywords": [],
   "author": "",
