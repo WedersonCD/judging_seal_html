@@ -20,6 +20,27 @@ dataService.createSeal = async (user_token,sealData) => {
     }
 }
 
+dataService.deleteSeal = async (user_token,sealId)=>{
+    try {
+        const deletedSeal = await fetch(`${process.env.DATA_API_URL}/seals?sealId=${sealId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user_token}`
+            }
+        });
+
+        if(!deletedSeal.ok)
+            console.error('Error deleting seal:',deletedSeal)
+
+        return deletedSeal;
+
+    } catch (error) {
+        console.error('Error deleting seal:', error.message);
+        throw error;
+    }
+}
+
 dataService.newUser = async (user) =>{
 
     try {
@@ -82,5 +103,8 @@ dataService.getAllSeals = async (user_token) => {
     }
 
 }
+
+
+
 
 module.exports = dataService

@@ -1,11 +1,11 @@
 {
   "name": "judging_seal_html",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node src/app.js",
-    "dev": "nodemon -e js,mustache,html,json,yml,_hs --env-file=.env src/app.js"
+    "dev": "nodemon -e js,mustache,html,json,yml,_hs,css --env-file=.env src/app.js"
   },
   "keywords": [],
   "author": "",

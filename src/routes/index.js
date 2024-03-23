@@ -12,6 +12,8 @@ router.get('/', (req, res) => {
 
 });
 
+
+
 router.get('/login', (req, res) => {
     res.clearCookie('user_token');
     res.render('login');
@@ -51,11 +53,13 @@ router.get('/index', async (req, res) => {
 
     try {
         const currentSeals = await dataService.getAllSeals(req.parsedCookies.user_token);
-        currentSeals.reverse()
-        if (currentSeals)
-            return res.render('index', { 'currentSeals': currentSeals });
+        
+        if (!currentSeals)
+            res.render('index', { 'currentSeals': [] });
 
-        res.render('index', { 'currentSeals': [] });
+        currentSeals.reverse();
+        return res.render('index', { 'currentSeals': currentSeals });
+
 
 
     } catch (err) {
@@ -64,7 +68,30 @@ router.get('/index', async (req, res) => {
     }
 });
 
+router.delete('/seals',(req,res)=>{
 
+    try {
+        const sealId = req.query.sealId;
+
+        if(!sealId)
+            return res.status(400).json({message: 'bad request missing sealId'});
+        
+        const response= dataService.deleteSeal(req.parsedCookies.user_token,sealId)
+
+        if(!response){
+            console.error('Fail in delete seal route');
+            res.status(400).send();
+        }
+
+        res.status(200).send();
+
+    }catch(err){
+        console.error(err)
+        res.status(500).send()
+    }
+
+
+});
 router.get('/new_seal', function (req, res) {
     res.render('new_seal', req.query);
 });
@@ -72,7 +99,7 @@ router.get('/new_seal', function (req, res) {
 router.post('/new_seal', async (req, res) =>{
 
     const hashtags = req.query.sealHashtag.split('#').filter(item => item.length > 1)
-    console.log(req.query.sealDescription)
+
     const newSeal = {
         seal_name: req.query.name,
         seal_rate: req.query.rate,
@@ -87,7 +114,7 @@ router.post('/new_seal', async (req, res) =>{
 
     }catch(err){
         console.error(err)
-        res.status(500)
+        res.status(500).send()
     }
 
 });
