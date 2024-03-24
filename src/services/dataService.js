@@ -79,6 +79,26 @@ dataService.login = async (user) => {
     }
 }
 
+dataService.createSealTemplate = async (templates)=>{
+
+    try {
+        templates.forEach(async (template)=>{
+
+            await fetch(`${process.env.DATA_API_URL}/seal-template`, {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                method: 'post',
+                body:JSON.stringify(template)
+            })
+
+        });
+
+    }catch(err){
+        console.err(err)
+    }
+}
+
 dataService.getAllSealTemplates = async () => {
 
     try {

@@ -3,6 +3,44 @@ var router = express.Router();
 const dataService = require('../services/dataService');
 
 
+router.post('/create_template',(req,res)=>{
+
+    const baseTemplates = [
+        {
+            "sealTemplate_question": "How was your day?",
+            "seal_name": "Daily Routine",
+            "seal_hashtags": ["Day"],
+            "seal_description": ""
+        },
+        {
+            "sealTemplate_question": "How was your sleep night?",
+            "seal_name": "Sleep Night",
+            "seal_hashtags": ["Night", "Sleep"],
+            "seal_description": ""
+        },
+        {
+            "sealTemplate_question": "How your book reading is going",
+            "seal_name": "Books",
+            "seal_hashtags": ["Reading","Books"],
+            "seal_description": ""
+        },
+        {
+            "sealTemplate_question": "how was your work day?",
+            "seal_name": "Day of Work",
+            "seal_hashtags": ["Day Routine","work"],
+            "seal_description": ""
+        }];
+        
+        dataService.createSealTemplate(baseTemplates);
+        res.end()
+
+})
+
+router.get('/create_template',(req,res)=>{
+    res.render('create_template');
+
+})
+
 router.get('/', (req, res) => {
 
     if (!req.parsedCookies)

@@ -4,16 +4,16 @@
     {{> partials/head}}
     <link rel="stylesheet" href="/css/index.css">
     <script>
-        console.log('bom dia')
         async function chama(){
-            const resposta = await fetch('/login',{method: 'POST',body: 'user_name=errado&user_psw=tambem',header: {'Content-Type': 'application/x-www-form-urlencoded'}})
-            console.log(resposta)
+
+            const resposta = await fetch('/create_template',{method: 'post'});
         }
 
     </script>
     </head>    
     <body>
-        <h1>olha marilene<h1>
+        <textarea type="textarea" id="bodyy">
+        </textarea>
         <input type="button" value="aham" onclick="chama()"/>
     </body>
 </html>
