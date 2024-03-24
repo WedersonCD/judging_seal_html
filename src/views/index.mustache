@@ -8,27 +8,37 @@
   <div class="content height-100">
     <div class="content-stars flex-column align-center">
       <div class="content-stars-title margin-bot-5">
-        How was your last experience?
+        <b>How was your last experience?</b>
       </div>
-      <div class="content-stars-rating flex-row">
-        <div class="content-stars-rating-start"><a href='/new_seal?rate=1'>⭐</a></div>
-        <div class="content-stars-rating-start"><a href='/new_seal?rate=2'>⭐</a></div>
-        <div class="content-stars-rating-start"><a href='/new_seal?rate=3'>⭐</a></div>
-        <div class="content-stars-rating-start"><a href='/new_seal?rate=4'>⭐</a></div>
-        <div class="content-stars-rating-start"><a href='/new_seal?rate=5'>⭐</a></div>
+      <div class="rating-stars flex-row">
+        <div class="rating-stars-star"><a href='/new_seal?rate=1'>⭐</a></div>
+        <div class="rating-stars-star"><a href='/new_seal?rate=2'>⭐</a></div>
+        <div class="rating-stars-star"><a href='/new_seal?rate=3'>⭐</a></div>
+        <div class="rating-stars-star"><a href='/new_seal?rate=4'>⭐</a></div>
+        <div class="rating-stars-star"><a href='/new_seal?rate=5'>⭐</a></div>
+      </div>
+      <div class="content-sealTemplates">
+        {{#sealsTemplate}}
+          <div class="content-sealTemplates-template" sealTemplate-id="{{_id}}" sealTemplate-name="{{seal_name}}" seal-hashtags="{{seal_hashtags}}" _="
+          on click
+            go to url '/new_seal?rate=0&name={{seal_name}}&hashtag={{seal_hashtags}}'
+          end">
+            <div class="content-sealTemplates-template-question">
+              {{sealTemplate_question}}
+            </div>
+            <div class="rating-stars">
+              <div class="rating-starts-start"><a _="init js() return '/new_seal?rate=1&name='+encodeURIComponent('{{seal_name}}')+'&hashtag='+encodeURIComponent('{{seal_hashtags}}') end put the result into encodedLink set @href to encodedLink end">⭐</a></div>
+              <div class="rating-starts-start"><a _="init js() return '/new_seal?rate=2&name='+encodeURIComponent('{{seal_name}}')+'&hashtag='+encodeURIComponent('{{seal_hashtags}}') end put the result into encodedLink set @href to encodedLink end">⭐</a></div>
+              <div class="rating-starts-start"><a _="init js() return '/new_seal?rate=3&name='+encodeURIComponent('{{seal_name}}')+'&hashtag='+encodeURIComponent('{{seal_hashtags}}') end put the result into encodedLink set @href to encodedLink end">⭐</a></div>
+              <div class="rating-starts-start"><a _="init js() return '/new_seal?rate=4&name='+encodeURIComponent('{{seal_name}}')+'&hashtag='+encodeURIComponent('{{seal_hashtags}}') end put the result into encodedLink set @href to encodedLink end">⭐</a></div>
+              <div class="rating-starts-start"><a _="init js() return '/new_seal?rate=5&name='+encodeURIComponent('{{seal_name}}')+'&hashtag='+encodeURIComponent('{{seal_hashtags}}') end put the result into encodedLink set @href to encodedLink end">⭐</a></div>
+            </div>
+          </div>
+        {{/sealsTemplate}}
+        </div>
       </div>
     </div>
-    <hr>
-    <div class="content-lastExperiences">
-      <spam>Your lastest experiences</spam>
-      <div class="flex-row justify-around width-100">
-        <div class="content-lastExperiences-item">Songs</div>
-        <div class="content-lastExperiences-item">Movies</div>
-      </div>
-      <div class="flex-row justify-around width-100">
-        <div class="content-lastExperiences-item">Places</div>
-        <div class="content-lastExperiences-item">Books</div>
-      </div>
+    <div class="flex-colum content-lastExperiences width-100">
       <div class="content-lastExperiences-seals">
         <div class="content-lastExperiences-seals-title width-100 text-align-center">
             <h3>Yours Seals !</h3>
