@@ -3,3 +3,8 @@
     height: 40px;
 
 }
+
+body {
+    display: flex;
+    height: 250px;
+}

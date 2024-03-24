@@ -5,32 +5,47 @@
     <link rel="stylesheet" href="/css/new_seal.css">
     </head>    
     <body>
-    <div class="content flex-column height-100 width-100">
-        <a href='/'>GO BACK</a>
-        <div class=" content-rating height-100 flex-row" _="init 
-            call getStars({{rate}})
+    <div class="content flex-column width-100">
+
+        <div class=" content-rating height-100 flex-row flex-1" _="init
+            set rate to '{{rate}}' or '0'
+            call getStars(rate)
             put it into me
         end
-        ">
-        </div>
-        <div class="flex-column justify-around">
-            <input type="text" class="content-sealName margin-bot-5 border-none border-bottom" placeholder="Title your seal">
+
+        on click
+
+            if target.classList.value is 'content-rating-start' then
+                tell target
+                    set rate to @rate
+                    call getStars(rate)
+                    put it into me
+                    set <.createSeal/> @rate to rate
+                end
+            end
+
+        end
+        "></div>
+        <div class="flex-column justify-around flex-4">
+            <input type="text" value="{{name}}" class="content-sealName margin-bot-5 border-none border-bottom" placeholder="Title your seal">
             <textarea class="content-sealDescription border-none border-bottom" placeholder="Wanna talk more about it?"></textarea>
-            <input type="text" class="content-sealHashtag border-none border-bottom" placeholder="# your seal">
+            <input type="text" value="{{hashtag}}" class="content-sealHashtag border-none border-bottom" placeholder="# your seal">
         </div>
 
-        <input value="cria essa porcaria 😠!!" type="button" class="margin-top-5 clickable" _="on click
+        <input value="cria essa porcaria 😠!!" type="button" class="createSeal margin-top-5 clickable" _="on click
             set name to .content-sealName.value
             set sealHashtag to .content-sealHashtag.value
             set sealDescription to .content-sealDescription.value
-            set rate to {{rate}}
+            set rate to @rate or '{{rate}}'
             js(rate,name,sealHashtag,sealDescription)
                 return '/new_seal?rate='+encodeURIComponent(rate)+'&name='+encodeURIComponent(name)+'&sealHashtag='+encodeURIComponent(sealHashtag)+'&sealDescription='+encodeURIComponent(sealDescription)
             end put the result into encodedLink
             fetch `${encodedLink}` with method:'POST'
             go to url /index
         end">
-    <div>
+        <input value="GO BACK(Its the right option)" type="button" class="createSeal margin-top-5 clickable" _="on click go to url /index ">
 
+                <div>
+        </div>
     </body>
 </html>

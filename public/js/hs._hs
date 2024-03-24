@@ -2,7 +2,9 @@ def getStars(starts)
     make a <div.content-rating-starts.flex-row/> called contentRatingStarts
 
     repeat in [1,2,3,4,5]
-        if it <= starts then
+        set rate to it
+
+        if rate <= starts then
             set start to '⭐'
         else
              set start to '☆'
@@ -10,7 +12,12 @@ def getStars(starts)
         
         make a <div.content-rating-start/> called contentRating
             put start into contentRating
+            tell contentRating
+                set @rate to rate
+            end
+
             put contentRating at end of contentRatingStarts
+
     end
     return contentRatingStarts
 end 

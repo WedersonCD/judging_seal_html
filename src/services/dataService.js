@@ -1,7 +1,7 @@
 
 const dataService = {}
 
-dataService.createSeal = async (user_token,sealData) => {
+dataService.createSeal = async (user_token, sealData) => {
 
     try {
         const response = await fetch(`${process.env.DATA_API_URL}/seals`, {
@@ -20,7 +20,7 @@ dataService.createSeal = async (user_token,sealData) => {
     }
 }
 
-dataService.deleteSeal = async (user_token,sealId)=>{
+dataService.deleteSeal = async (user_token, sealId) => {
     try {
         const deletedSeal = await fetch(`${process.env.DATA_API_URL}/seals?sealId=${sealId}`, {
             method: 'DELETE',
@@ -30,8 +30,8 @@ dataService.deleteSeal = async (user_token,sealId)=>{
             }
         });
 
-        if(!deletedSeal.ok)
-            console.error('Error deleting seal:',deletedSeal)
+        if (!deletedSeal.ok)
+            console.error('Error deleting seal:', deletedSeal)
 
         return deletedSeal;
 
@@ -41,10 +41,10 @@ dataService.deleteSeal = async (user_token,sealId)=>{
     }
 }
 
-dataService.newUser = async (user) =>{
+dataService.newUser = async (user) => {
 
     try {
-        const response= await fetch(`${process.env.DATA_API_URL}/users`, {
+        const response = await fetch(`${process.env.DATA_API_URL}/users`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -52,18 +52,18 @@ dataService.newUser = async (user) =>{
             body: JSON.stringify(user),
         });
 
-        if(response.ok)
+        if (response.ok)
             return await response.json();
-        
+
     } catch (error) {
         console.error('Error registering user:', error.message);
     }
 }
 
-dataService.login = async (user) =>{
+dataService.login = async (user) => {
 
     try {
-        const response= await fetch(`${process.env.DATA_API_URL}/users/login`, {
+        const response = await fetch(`${process.env.DATA_API_URL}/users/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -71,11 +71,34 @@ dataService.login = async (user) =>{
             body: JSON.stringify(user),
         });
 
-        if(response.ok)
+        if (response.ok)
             return await response.json();
-        
+
     } catch (error) {
         console.error('Error Login seal:', error.message);
+    }
+}
+
+dataService.getAllSealTemplates = async () => {
+
+    try {
+        const response = await fetch(`${process.env.DATA_API_URL}/seal-template`, { mehod: 'get' })
+
+        const responseBody = await response.json();
+
+        if (!response.ok)
+            return console.error('Failed to fetch seals template', responseBody);
+
+        const sealTemplates = responseBody.map((sealTemplate)=>{
+            sealTemplate.seal_hashtags = sealTemplate.seal_hashtags.map((hashtag)=>{return '#'+hashtag}).concat(' ')
+            return sealTemplate
+        })
+
+        return sealTemplates
+
+    } catch (error) {
+        console.error('Error get seals list:', error);
+        throw error;
     }
 }
 
@@ -91,9 +114,9 @@ dataService.getAllSeals = async (user_token) => {
         });
 
         const responseBody = await response.json();
-        
-        if(!response.ok)
-            return console.error('Failed to fetch seals',responseBody)
+
+        if (!response.ok)
+            return console.error('Failed to fetch seals', responseBody)
 
         return responseBody
 

@@ -13,7 +13,6 @@ router.get('/', (req, res) => {
 });
 
 
-
 router.get('/login', (req, res) => {
     res.clearCookie('user_token');
     res.render('login');
@@ -56,11 +55,11 @@ router.get('/index', async (req, res) => {
         
         if (!currentSeals)
             res.render('index', { 'currentSeals': [] });
-
+        
         currentSeals.reverse();
-        return res.render('index', { 'currentSeals': currentSeals });
+        const sealsTemplate = await dataService.getAllSealTemplates();
 
-
+        return res.render('index', { 'currentSeals': currentSeals,'sealsTemplate': sealsTemplate});
 
     } catch (err) {
         console.error(err)
