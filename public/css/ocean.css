@@ -1,5 +1,6 @@
 .content {
-    height: 1600px;
+    height: 100%;
+    overflow-y: scroll;
     width: 100%;
     display: flex;
     flex-direction: column;

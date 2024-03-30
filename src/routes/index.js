@@ -43,11 +43,12 @@ router.get('/ocean',async (req,res)=>{
         const seals = await dataService.getOcean(req.parsedCookies.user_token);
 
         seals.forEach(seal => seal.date=seal.seal_createdAt.substring(0,10))
-        
+
         //sorte by date
+        seals.sort((a, b) => a.seal_createdAt > b.seal_createdAt ? -1 : 1)
+        
         const dates = [...new Set(seals.map(seal => seal.date))]
         
-        dates.sort((a, b) => a > b ? -1 : 1)
 
         const sealsForTemplate = dates.map(date => ({
             date,
