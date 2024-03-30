@@ -122,6 +122,32 @@ dataService.getAllSealTemplates = async () => {
     }
 }
 
+dataService.getOcean = async (user_token) => {
+
+    try {
+        const response = await fetch(`${process.env.DATA_API_URL}/seals/opean-ocean`, {
+            method: 'get',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user_token}`
+            }
+        });
+
+        if (!response.ok)
+            return console.error('Failed to fetch seals', responseBody)
+
+        const responseBody = await response.json();
+
+
+        return responseBody
+
+    } catch (error) {
+        console.error('Error get seals list:', error);
+        throw error;
+    }
+
+}
+
 dataService.getAllSeals = async (user_token) => {
 
     try {

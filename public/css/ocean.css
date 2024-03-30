@@ -1,0 +1,19 @@
+.content {
+    height: 1600px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+}
+
+
+.dayContainer-seals-seal{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    height: 40px;
+    margin: 5px;
+    border: solid 1px #000;
+    border-radius: 20px;
+    
+}
