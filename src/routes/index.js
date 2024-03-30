@@ -36,6 +36,35 @@ router.post('/create_template',(req,res)=>{
 
 })
 
+
+router.get('/ocean',async (req,res)=>{
+
+    try {
+        const seals = await dataService.getOcean(req.parsedCookies.user_token);
+
+        seals.forEach(seal => seal.date=seal.seal_createdAt.substring(0,10))
+        
+        //sorte by date
+        const dates = [...new Set(seals.map(seal => seal.date))]
+        
+        dates.sort((a, b) => a > b ? -1 : 1)
+
+        const sealsForTemplate = dates.map(date => ({
+            date,
+            seals: seals.filter(seal => seal.date === date),
+          }));
+
+
+        res.render('ocean',{sealsForTemplate:sealsForTemplate});
+
+    } catch (error) {
+        console.error(err)
+        res.status(400).send()
+    }
+
+
+})
+
 router.get('/create_template',(req,res)=>{
     res.render('create_template');
 

@@ -15,3 +15,10 @@ body {
     z-index: 999;
     justify-content: space-evenly;
 }
+
+.menu div {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+}
