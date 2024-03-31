@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const dataService = require('../services/dataService');
+const UTILS = require('../services/utils');
+
 
 
 router.post('/create_template',(req,res)=>{
@@ -45,7 +47,7 @@ router.get('/ocean',async (req,res)=>{
         seals.forEach(seal => {
             
             //add date property
-           seal.date=seal.seal_createdAt.substring(0,10)
+           seal.date=UTILS.dateTimeStringToDate(seal.seal_createdAt);
             //flag to mark the seal as the author
            seal.is_the_author = req.parsedCookies.user_id === seal.user
         })
@@ -55,8 +57,6 @@ router.get('/ocean',async (req,res)=>{
         
         const dates = [...new Set(seals.map(seal => seal.date))]
         
-        console.log(seals)
-        
         const sealsForTemplate = dates.map(date => ({
             date,
             seals: seals.filter(seal => seal.date === date),
@@ -65,7 +65,7 @@ router.get('/ocean',async (req,res)=>{
         res.render('ocean',{sealsForTemplate:sealsForTemplate});
 
     } catch (error) {
-        console.error(err)
+        console.error(error)
         res.status(400).send()
     }
 
