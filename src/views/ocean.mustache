@@ -20,7 +20,13 @@
                     </div>
                     <div class='dayContainer-seals flex-column'>
                         {{#seals}}
-                            <div class='dayContainer-seals-seal'>
+                            <div class='dayContainer-seals-seal'_="
+                            init
+                                if {{is_the_author}} then
+                                    add .ownAuthor
+                                end
+                            end
+                            ">
                                 <div class="flex-row justify-between">
                                     <div><b>{{seal_name}}</b></div>
                                     <div _="

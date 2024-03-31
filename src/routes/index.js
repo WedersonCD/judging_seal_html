@@ -42,7 +42,13 @@ router.get('/ocean',async (req,res)=>{
     try {
         const seals = await dataService.getOcean(req.parsedCookies.user_token);
 
-        seals.forEach(seal => seal.date=seal.seal_createdAt.substring(0,10))
+        seals.forEach(seal => {
+            
+            //add date property
+           seal.date=seal.seal_createdAt.substring(0,10)
+            //flag to mark the seal as the author
+           seal.is_the_author = req.parsedCookies.user_id === seal.user
+        })
 
         //sorte by date
         seals.sort((a, b) => a.seal_createdAt > b.seal_createdAt ? -1 : 1)
@@ -54,7 +60,6 @@ router.get('/ocean',async (req,res)=>{
             date,
             seals: seals.filter(seal => seal.date === date),
           }));
-
 
         res.render('ocean',{sealsForTemplate:sealsForTemplate});
 
@@ -103,8 +108,10 @@ router.post('/login', async (req, res) => {
         if(!response)
             return res.status(401).send();
         
-        res.cookie('user_token', response.token)
-        res.status(201).send()
+        res.cookie('user_token', response.token);
+        res.cookie('user_id', response.user._id);
+
+        res.status(201).send();
 
     } catch (err) {
         console.error(err)

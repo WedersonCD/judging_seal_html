@@ -9,6 +9,7 @@
 
 
 .dayContainer-seals-seal{
+    width: 80%;
     display: flex;
     flex-direction: column;
     padding: 5px;
@@ -18,4 +19,9 @@
     border-radius: 20px;
     justify-content: space-between;
     
+}
+
+.ownAuthor {
+    background-color: aquamarine;
+    align-self:flex-end;
 }
