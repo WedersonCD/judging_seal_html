@@ -55,7 +55,8 @@ router.get('/ocean',async (req,res)=>{
         
         const dates = [...new Set(seals.map(seal => seal.date))]
         
-
+        console.log(seals)
+        
         const sealsForTemplate = dates.map(date => ({
             date,
             seals: seals.filter(seal => seal.date === date),
