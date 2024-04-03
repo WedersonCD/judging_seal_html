@@ -45,7 +45,8 @@ router.get('/ocean',async (req,res)=>{
         const seals = await dataService.getOcean(req.parsedCookies.user_token);
 
         seals.forEach(seal => {
-            
+
+            console.log(seal)
             //add date property
            seal.date=UTILS.dateTimeStringToDate(seal.seal_createdAt);
             //flag to mark the seal as the author
