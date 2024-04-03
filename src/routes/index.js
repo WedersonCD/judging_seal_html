@@ -53,7 +53,7 @@ router.get('/ocean',async (req,res)=>{
         })
 
         //sorte by date
-        seals.sort((a, b) => a.seal_createdAt > b.seal_createdAt ? -1 : 1)
+        seals.sort((a, b) => a.seal_updatedAt > b.seal_updatedAt ? -1 : 1)
         
         const dates = [...new Set(seals.map(seal => seal.date))]
         
