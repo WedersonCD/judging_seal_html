@@ -46,9 +46,8 @@ router.get('/ocean',async (req,res)=>{
 
         seals.forEach(seal => {
 
-            console.log(seal)
             //add date property
-           seal.date=UTILS.dateTimeStringToDate(seal.seal_createdAt);
+           seal.date=UTILS.dateTimeStringToDate(seal.seal_updatedAt);
             //flag to mark the seal as the author
            seal.is_the_author = req.parsedCookies.user_id === seal.user
         })
