@@ -133,6 +133,9 @@ router.get('/index', async (req, res) => {
             res.render('index', { 'currentSeals': [] });
         
         currentSeals.reverse();
+
+        currentSeals.forEach(seal => seal.shareableText=UTILS.getShareableText(seal))
+
         const sealsTemplate = await dataService.getAllSealTemplates();
 
         return res.render('index', { 'currentSeals': currentSeals,'sealsTemplate': sealsTemplate});

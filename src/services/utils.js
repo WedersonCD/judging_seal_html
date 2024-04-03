@@ -9,4 +9,29 @@ utils.dateTimeStringToDate = (dateInString)=>{
 
 }
 
+utils.getShareableText = (seal) =>{
+    
+    let stars = ''
+
+    for(x=1;x<=5;x++){
+
+        stars = stars + ((x <= seal.seal_rate) ? '⭐' : '☆');
+
+    }
+
+    const sharableText = `
+*${seal.seal_name}* - ${seal.seal_updatedAt.substring(0,10)}
+
+${seal.seal_description}
+
+${stars}
+
+You can judge to in:
+https://judgingseal.com.br/ (do not forget your account)
+`;
+
+    return sharableText
+
+}
+
 module.exports = utils
