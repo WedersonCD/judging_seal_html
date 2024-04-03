@@ -20,9 +20,9 @@ utils.getShareableText = (seal) =>{
     }
 
     const sharableText = `
-*${seal.seal_name}* - ${seal.seal_updatedAt.substring(0,10)}
+*${seal.seal_name.replace(/'/g, '')}* - ${seal.seal_updatedAt.substring(0,10)}
 
-${seal.seal_description}
+${seal.seal_description.replace(/'/g, '')}
 
 ${stars}
 
