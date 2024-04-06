@@ -1,3 +1,17 @@
+
+:root {
+    --color-deep-seal-blue: #001A33;
+    --color-coral-orange: #FF6130;
+    --color-aquamarine: #2ab1fe;
+    --color-white-sand: #E1D8C6;
+    --color-star-fish-yellow: #F5CD4A;
+    --color-primary: var(--color-deep-seal-blue);
+    --color-secondary: var(--color-aquamarine);
+    --color-accent: var(--color-coral-orange);
+    --color-neutral: var(--color-white-sand);
+    --color-rating: var(--color-star-fish-yellow);
+}
+
 body {
     font-family: Roboto;
 }
@@ -23,15 +37,13 @@ body {
     vertical-align: middle;
 }
 
-:root {
-    --color-deep-seal-blue: #001A33;
-    --color-coral-orange: #FF6130;
-    --color-aquamarine: #7FFFD4;
-    --color-white-sand: #E1D8C6;
-    --color-star-fish-yellow: #F5CD4A;
-    --color-primary: var(--color-deep-seal-blue);
-    --color-secondary: var(--color-aquamarine);
-    --color-accent: var(--color-coral-orange);
-    --color-neutral: var(--color-white-sand);
-    --color-rating: var(--color-star-fish-yellow);
+
+.button-primary {
+    min-height: 40px;
+    background-color: var(--color-deep-seal-blue);
+    color: var(--color-neutral);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
 }

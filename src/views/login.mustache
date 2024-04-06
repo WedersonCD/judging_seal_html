@@ -6,15 +6,20 @@
 
 <body>
     <div class="content">
-        <h1>Judging Seal</h1>
+        <section class="header">
+            <img height="100px" width="100px" src='/images/star_fish.png'>
+            <h1>Judging Seal</h1>
+            <h4>Rate and track everthing!</h4>
+        </section>
 
-        <div class="input">
+        <section class="input">
             <input type="text" id="user_name" name="user_name" placeholder='user'> 
             <input type="password" id="user_psw" name="user_psw" placeholder='password'>   
+        </section>
 
-        </div>
+        <section class="buttons">
 
-        <input type="button" value="Start Judging!!!!" class="margin-top-5" _="
+        <div class="login button-primary clickable" _="
         on click
             
             set user_name to #user_name.value
@@ -44,8 +49,10 @@
             set headers['Content-Type'] to 'application/x-www-form-urlencoded'
         end
         ">
+        Start Judging!!!!
+        </div>
 
-        <input type="button" value="Register me !!!!" class="margin-top-5" _="
+        <div class="margin-top-5 clickable" _="
         on click
 
             set user_name to #user_name.value
@@ -75,7 +82,10 @@
             set headers['Content-Type'] to 'application/x-www-form-urlencoded'
         end
         ">
+            Doesn't have account? Sing Up
+        </div>
     </div>
+        </section>
 
 </body>
 
