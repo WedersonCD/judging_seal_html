@@ -2,19 +2,24 @@
 <html lang="en">
 
 {{> partials/head}}
-<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/login.css">
 
 <body>
-    <form class="flex-column width-100 text-align-center justify-around">
-        <h1>Judging Seal</h1>
+    <div class="content">
+        <section class="header">
+            <img height="100px" width="100px" src='/images/star_fish.png'>
+            <h1>Judging Seal</h1>
+            <h4>Rate and track everthing!</h4>
+        </section>
 
-        <label for="user_name">User</label>
-        <input type="text" id="user_name" name="user_name"> 
+        <section class="input">
+            <input type="text" id="user_name" name="user_name" placeholder='user'> 
+            <input type="password" id="user_psw" name="user_psw" placeholder='password'>   
+        </section>
 
-        <label for="user_psw">Password</label>
-        <input type="password" id="user_psw" name="user_psw">   
+        <section class="buttons">
 
-        <input type="button" value="Start Judging!!!!" class="margin-top-5" _="
+        <div class="login button-primary clickable" _="
         on click
             
             set user_name to #user_name.value
@@ -44,8 +49,10 @@
             set headers['Content-Type'] to 'application/x-www-form-urlencoded'
         end
         ">
+        Start Judging!!!!
+        </div>
 
-        <input type="button" value="Register me !!!!" class="margin-top-5" _="
+        <div class="margin-top-5 clickable" _="
         on click
 
             set user_name to #user_name.value
@@ -75,7 +82,10 @@
             set headers['Content-Type'] to 'application/x-www-form-urlencoded'
         end
         ">
-    </form>
+            Doesn't have account? Sing Up
+        </div>
+    </div>
+        </section>
 
 </body>
 
