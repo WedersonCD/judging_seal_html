@@ -1,0 +1,25 @@
+<div class='seal'>
+    <div class='flex-row flex-1 justify-between'>
+        <div class="flex-1">
+            <img src="/images/seal.png" height="50px" width="50px"/>
+        </div>
+        <div class="flex-column flex-4">
+            <b>{{seal_name}}</b>
+            <span>{{date}}</span>
+        </div>
+        <div class="flex-row flex-2 justify-end">
+            <div _=" init    get getStars({{seal_rate}})   put it into me end">
+            </div>
+        </div>
+    </div>
+    <div class="seal-description">
+        <p>
+            {{seal_description}}
+        </p>
+    </div>
+    <div class="seal-hashtags">
+        {{#seal_hashtags}}
+            <div class="hashtag margin-5"><span>#{{.}}</span></div>
+        {{/seal_hashtags}}
+    </div>
+</div>
