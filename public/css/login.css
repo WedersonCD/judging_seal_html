@@ -1,0 +1,28 @@
+.content {
+    display:flex;
+    flex-direction: column;
+    height: 700px;
+    width: 100%;
+    text-align: center;
+    justify-content: space-around;
+
+}
+
+.input {
+    display:flex;
+    flex-direction: column;
+    height: 120px;
+    justify-content: space-between;
+}
+
+.input input {
+    background-color: var(--color-neutral);
+    border-radius: 10px;
+    min-height: 40px;
+    border:none;
+    padding:5px;
+}
+
+input:focus-visible  {
+    outline:none;
+}

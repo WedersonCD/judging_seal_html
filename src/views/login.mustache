@@ -2,17 +2,17 @@
 <html lang="en">
 
 {{> partials/head}}
-<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/login.css">
 
 <body>
-    <form class="flex-column width-100 text-align-center justify-around">
+    <div class="content">
         <h1>Judging Seal</h1>
 
-        <label for="user_name">User</label>
-        <input type="text" id="user_name" name="user_name"> 
+        <div class="input">
+            <input type="text" id="user_name" name="user_name" placeholder='user'> 
+            <input type="password" id="user_psw" name="user_psw" placeholder='password'>   
 
-        <label for="user_psw">Password</label>
-        <input type="password" id="user_psw" name="user_psw">   
+        </div>
 
         <input type="button" value="Start Judging!!!!" class="margin-top-5" _="
         on click
@@ -75,7 +75,7 @@
             set headers['Content-Type'] to 'application/x-www-form-urlencoded'
         end
         ">
-    </form>
+    </div>
 
 </body>
 
