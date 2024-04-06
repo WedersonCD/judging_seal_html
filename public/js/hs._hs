@@ -5,13 +5,18 @@ def getStars(starts)
         set rate to it
 
         if rate <= starts then
-            set start to '⭐'
+            set src to '/images/star_fish.png'
         else
-             set start to '☆'
+             set src to '/images/star_fish_grey.png'
         end
         
+        make a <img/> called star
+            set star's src to src
+            set star's height to '21'
+            set star's width to '21'
+
         make a <div.content-rating-start/> called contentRating
-            put start into contentRating
+            put star into contentRating
             tell contentRating
                 set @rate to rate
             end

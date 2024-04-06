@@ -55,14 +55,7 @@ router.get('/ocean',async (req,res)=>{
         //sorte by date
         seals.sort((a, b) => a.seal_updatedAt > b.seal_updatedAt ? -1 : 1)
         
-        const dates = [...new Set(seals.map(seal => seal.date))]
-        
-        const sealsForTemplate = dates.map(date => ({
-            date,
-            seals: seals.filter(seal => seal.date === date),
-          }));
-
-        res.render('ocean',{sealsForTemplate:sealsForTemplate});
+        res.render('ocean',{seals:seals});
 
     } catch (error) {
         console.error(error)

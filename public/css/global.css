@@ -14,6 +14,8 @@
 
 body {
     font-family: Roboto;
+    margin: 0px;
+
 }
 
 .menu {
@@ -24,7 +26,7 @@ body {
     height: 35px;
     position: sticky;
     bottom: 0px;
-    background-color: white;
+    background-color: var(--color-primary);
     border-top:1px solid #000;
     z-index: 999;
     justify-content: space-evenly;

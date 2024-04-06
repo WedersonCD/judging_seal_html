@@ -6,49 +6,16 @@
     </head>    
     <body>
         <div class="content">
-
-            <div>
+            <section class='head margin-bot-5'>
                 <span class="text-align-center">
                     <h2>WEALCOME TO THE OCEAN</h2>
                 </span>
-            </div>
+            </section>
             <div class="flex-column height-100">
-                {{#sealsForTemplate}}
-                <div class='dayContainer {{date}} flex-column'>
-                    <div class="dayContainer-title text-align-center">
-                        <h2><b>{{date}}</b><h2>
-                    </div>
-                    <div class='dayContainer-seals flex-column'>
-                        {{#seals}}
-                            <div class='dayContainer-seals-seal'_="
-                            init
-                                if {{is_the_author}} then
-                                    add .ownAuthor
-                                end
-                            end
-                            ">
-                                <div class="flex-row justify-between">
-                                    <div><b>{{seal_name}}</b></div>
-                                    <div _="
-                                        init 
-                                          get getStars({{seal_rate}})
-                                          put it into me
-                                        end">
-                                    </div>
-                                </div>
-
-                                <div class="flex-row">
-                                {{#seal_hashtags}}
-                                    <span class="hashtag margin-5">#{{.}}</span>
-                                {{/seal_hashtags}}
-                                </div>
-                            </div>
-                        {{/seals}}
-                    </div>
-
-                </div>
-                {{/sealsForTemplate}}
-
+                {{#seals}}
+                    {{> partials/seal}}
+                    <hr/>
+                {{/seals}}
             </div>
         </div>
     {{> partials/menu}}
