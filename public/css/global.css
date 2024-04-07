@@ -15,7 +15,6 @@
 body {
     font-family: Roboto;
     margin: 0px;
-
 }
 
 .menu {
@@ -42,7 +41,27 @@ body {
 
 .button-primary {
     min-height: 40px;
-    background-color: var(--color-deep-seal-blue);
+    background-color: var(--color-primary);
+    color: var(--color-neutral);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.button-neutral {
+    min-height: 40px;
+    background-color: var(--color-neutral);
+    color: var(--color-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.button-accent {
+    min-height: 40px;
+    background-color: var(--color-accent);
     color: var(--color-neutral);
     display: flex;
     justify-content: center;

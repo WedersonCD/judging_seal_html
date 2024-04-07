@@ -45,3 +45,30 @@
 .seal-hashtags div {
     margin:5px;
 }
+
+.new-seal {
+    display: flex;
+    
+    border-radius: 100%;
+    border: none;
+
+    height: 50px;
+    width: 50px;
+
+    position: fixed;
+    right: 10px;
+    bottom: 60px;
+    z-index: 999;
+
+    background-color: var(--color-primary);
+    color: white;
+    opacity: 50%;
+
+    align-items: center;
+    justify-content: center;
+
+}
+
+.new-seal:hover {
+    opacity: 100%;
+}

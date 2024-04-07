@@ -75,7 +75,7 @@ router.get('/', (req, res) => {
     if (!req.parsedCookies)
         res.redirect('login');
     else
-        res.redirect('/index')
+        res.redirect('/ocean')
 
 });
 
@@ -117,7 +117,9 @@ router.post('/login', async (req, res) => {
 router.get('/index', async (req, res) => {
 
     if(!req.parsedCookies.user_token)
-        res.redirect('/login');
+        return res.redirect('/login');
+
+    return res.redirect('/ocean');
 
     try {
         const currentSeals = await dataService.getAllSeals(req.parsedCookies.user_token);
@@ -181,7 +183,7 @@ router.post('/new_seal', async (req, res) =>{
     try{
         const response= dataService.createSeal(req.parsedCookies.user_token,newSeal)
         
-        res.status(201).redirect('/index')
+        res.status(201).redirect('/ocean')
 
     }catch(err){
         console.error(err)
