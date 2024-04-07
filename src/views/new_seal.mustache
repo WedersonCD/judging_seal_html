@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="/css/new_seal.css">
     </head>
     <body>
-        <div class="content flex-column width-80 justify-start">
+        <div class="content flex-column width-90 justify-start">
             <input type="text" value="{{name}}" class="content-sealName"
                 placeholder="Title your seal">
             <div class="content-rating" _="init
@@ -30,8 +30,8 @@
                 placeholder="Wanna talk more about it?"></textarea>
             <input type="text" value="{{hashtag}}" class="content-sealHashtag"
                 placeholder="# your seal">
-            <div class="flex-column align-center">
-                <div type="button" class="createSeal button-neutral width-90 clickable" _="on click
+            <div class="flex-column align-center justify-evenly">
+                <div type="button" class="createSeal button-neutral width-90 clickable margin-bot-10" _="on click
             set name to .content-sealName.value
             set sealHashtag to .content-sealHashtag.value
             set sealDescription to .content-sealDescription.value
