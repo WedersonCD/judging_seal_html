@@ -45,11 +45,14 @@ router.get('/ocean',async (req,res)=>{
         const seals = await dataService.getOcean(req.parsedCookies.user_token);
 
         seals.forEach(seal => {
+            //get shareableText
+            seal.shareableText=UTILS.getShareableText(seal);
 
             //add date property
-           seal.date=UTILS.dateTimeStringToDate(seal.seal_updatedAt);
+            seal.date=UTILS.dateTimeStringToDate(seal.seal_updatedAt);
+            
             //flag to mark the seal as the author
-           seal.is_the_author = req.parsedCookies.user_id === seal.user
+            seal.is_the_author = req.parsedCookies.user_id === seal.user
         })
 
         //sorte by date

@@ -72,3 +72,26 @@
 .new-seal:hover {
     opacity: 100%;
 }
+
+.seal-moreOptions{
+    height: 30px;
+    width: 30px;
+    align-self: flex-end;
+    text-align: center;
+    left: 5px;
+}
+
+.seal-moreOptions-options{
+    z-index: 999;
+    background-color: white;
+    border: 1px solid var(--color-primary);
+    text-align: end;
+    min-width: 50px;
+    position: absolute;
+    right: 5px;
+    padding: 5px;
+}
+
+.seal-moreOptions-options-option{
+    min-height: 15px;
+}

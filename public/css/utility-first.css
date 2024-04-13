@@ -45,7 +45,7 @@
 
 .clickable:hover {cursor:pointer;}
 
-.display-none {display:none;}
+.display-none {display: none !important;}
 
 .flex-1 {flex:1;}
 .flex-2 {flex:2;}

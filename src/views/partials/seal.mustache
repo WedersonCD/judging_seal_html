@@ -1,4 +1,36 @@
 <div class='seal'>
+    <div class="seal-moreOptions" _="on click toggle .display-none on .seal-moreOptions-options in me end">
+        <span>. . .</span>
+        <div class="seal-moreOptions-options clickable display-none">
+            <div class="seal-moreOptions-options-option" _="
+                on click
+                  call navigator.clipboard.writeText('{{shareableText}}')
+                end
+                "><span>copy</span></div>
+            {{#is_the_author}}
+            <hr>
+            <div class="seal-moreOptions-options-option" _="
+            
+            init
+                set @seal-id to '{{_id}}'
+            end     
+
+            on click
+                
+                set sealId to @seal-id   
+
+                js(sealId)
+                  return '/seals?sealId='+encodeURIComponent(sealId)
+                end put the result into encodedLink         
+
+                fetch `${encodedLink}` with method:'DELETE'         
+                add .display-none to the closest <div.seal/>
+
+            end
+            "><span>delete</span></div>
+            {{/is_the_author}}
+        </div>
+    </div>
     <div class='flex-row flex-1 justify-between'>
         <div class="flex-1">
             <img src="/images/seal.png" height="50px" width="50px"/>
