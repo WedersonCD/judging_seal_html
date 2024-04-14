@@ -3,7 +3,7 @@ const mustacheExpress = require('mustache-express');
 const app = express();
 
 //middleware
-const parseCookieMiddleware = require(__dirname+'/middleware/parseCookieMiddleware')
+const parseCookieMiddleware = require(__dirname+'/middleware/ParseCookieMiddleware')
 
 // Register '.mustache' extension with The Mustache Express
 app.engine('mustache', mustacheExpress());
