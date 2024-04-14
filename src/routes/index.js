@@ -75,10 +75,7 @@ router.get('/create_template',(req,res)=>{
 
 router.get('/', (req, res) => {
 
-    if (!req.parsedCookies)
-        res.redirect('login');
-    else
-        res.redirect('/ocean')
+    return res.redirect('/ocean');
 
 });
 

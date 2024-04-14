@@ -12,6 +12,7 @@ app.set('view engine', 'mustache');
 app.set('views', __dirname + '/views');
 
 app.use(parseCookieMiddleware)
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
