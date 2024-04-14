@@ -1,7 +1,6 @@
 async function validadteAuthTokenMiddleware(req, res, next) {
 
     //don't run this middleware on login endpoint
-    console.log(req.path)
     if (req.path === '/login')
         return next();
 

@@ -2,24 +2,33 @@ const express = require('express');
 const mustacheExpress = require('mustache-express');
 const app = express();
 
-//middleware
-const parseCookieMiddleware = require(__dirname+'/middleware/ParseCookieMiddleware')
-
 // Register '.mustache' extension with The Mustache Express
 app.engine('mustache', mustacheExpress());
 
 app.set('view engine', 'mustache');
 app.set('views', __dirname + '/views');
 
-app.use(parseCookieMiddleware)
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
+//MIDDLEWARE
+const parseCookieMiddleware = require(__dirname+'/middlewares/parseCookieMiddleware');
+const validadteAuthTokenMiddleware = require(__dirname+'/middlewares/validateAuthTokenMiddleware');
+
 //ROUTES
-var router = require(__dirname+'/routes/index');
+const generalRoutes = require(__dirname+'/routes/generalRoutes');
+const sealRoutes = require(__dirname+'/routes/sealRoutes');
+const userRoutes = require(__dirname+'/routes/userRoutes');
+const templateRoutes = require(__dirname+'/routes/templateRoutes');
 
-app.use('/', router);
+app.use(parseCookieMiddleware)
 
-const port = process.env.SERVICE_PORT || 9953
+app.use(userRoutes);
+
+app.use(validadteAuthTokenMiddleware)
+app.use(sealRoutes);
+app.use(templateRoutes);
+app.use(generalRoutes);
+
+const port = process.env.SERVICE_PORT || 9953;
 app.listen(port, () => console.log(`HTML server listening on port ${port}`));
