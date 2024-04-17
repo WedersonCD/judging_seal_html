@@ -10,6 +10,17 @@
             {{#is_the_author}}
             <hr>
             <div class="seal-moreOptions-options-option" _="
+                on click
+                  set sealId to '{{_id}}'
+                  js(sealId)
+                    return '/update_seal?sealId='+encodeURIComponent(sealId)
+                  end put the result into encodedLink         
+                  go to url encodedLink
+                end
+                "><span>edit</span>
+            </div>
+            <hr>
+            <div class="seal-moreOptions-options-option" _="
             
             init
                 set @seal-id to '{{_id}}'
@@ -28,6 +39,7 @@
 
             end
             "><span>delete</span></div>
+
             {{/is_the_author}}
         </div>
     </div>
