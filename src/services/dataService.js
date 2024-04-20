@@ -125,7 +125,8 @@ dataService.getAllSealTemplates = async () => {
 dataService.getOcean = async (user_token) => {
 
     try {
-        const response = await fetch(`${process.env.DATA_API_URL}/seals/opean-ocean`, {
+
+        const response = await fetch(`${process.env.DATA_API_URL}/seals/open-ocean`, {
             method: 'get',
             headers: {
                 'Content-Type': 'application/json',
@@ -133,11 +134,10 @@ dataService.getOcean = async (user_token) => {
             }
         });
 
-        if (!response.ok)
-            return console.error('Failed to fetch seals', responseBody)
-
         const responseBody = await response.json();
 
+        if (!response.ok)
+            return console.error('Failed to fetch ocean',responseBody)
 
         return responseBody
 
@@ -148,7 +148,7 @@ dataService.getOcean = async (user_token) => {
 
 }
 
-dataService.getSealById = async(seal_id) =>{
+dataService.getSealById = async (seal_id,user_token) =>{
 
     try {
 
@@ -160,7 +160,7 @@ dataService.getSealById = async(seal_id) =>{
             }
         });
 
-        const seal =  response.json();
+        const seal =  await response.json();
 
         if(!seal)
             return console.error('Failed to fetch seasl', seal);

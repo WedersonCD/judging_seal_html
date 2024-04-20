@@ -8,9 +8,17 @@ sealController.newSeal =  (req, res) => {
 };
 
 
+sealController.updateSeal = async (req,res) =>{
+
+    const seal = await dataService.getSealById(req.query.sealId,req.parsedCookies.user_token)
+    console.log('sseal--.',seal)
+    return res.render('new_seal', {seal: seal});
+}
+
 sealController.openOcean = async (req, res) => {
     try {
         const seals = await dataService.getOcean(req.parsedCookies.user_token);
+
         seals.forEach(seal => {
             seal.shareableText = UTILS.getShareableText(seal);
             seal.date = UTILS.dateTimeStringToDate(seal.seal_updatedAt);
