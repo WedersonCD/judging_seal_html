@@ -6,8 +6,12 @@ const sealController = require('../controllers/sealController');
 router.post('/new_seal', sealController.createSeal);
 router.delete('/seals', sealController.deleteSeal);
 
-router.get('/ocean', sealController.openOcean);
+router.put('/seals/:sealId', sealController.putSeal);
 
+router.get('/ocean', sealController.openOcean);
 router.get('/new_seal', sealController.newSeal);
+router.get('/update_seal',sealController.updateSeal)
+
+router.get('/seals/:sealId', sealController.getSealById);
 
 module.exports = router;

@@ -122,10 +122,32 @@ dataService.getAllSealTemplates = async () => {
     }
 }
 
+dataService.updateSeal = async (user_token, sealData) => {
+    try {
+        const response = await fetch(`${process.env.DATA_API_URL}/seals/${sealData._id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user_token}`
+            },
+            body: JSON.stringify(sealData),
+        });
+        const responseBody = await response.json();
+
+        return responseBody
+
+    } catch (error) {
+        console.error('Error updating seal:', error.message);
+        throw error;
+    }
+}
+
+
 dataService.getOcean = async (user_token) => {
 
     try {
-        const response = await fetch(`${process.env.DATA_API_URL}/seals/opean-ocean`, {
+
+        const response = await fetch(`${process.env.DATA_API_URL}/seals/open-ocean`, {
             method: 'get',
             headers: {
                 'Content-Type': 'application/json',
@@ -133,11 +155,10 @@ dataService.getOcean = async (user_token) => {
             }
         });
 
-        if (!response.ok)
-            return console.error('Failed to fetch seals', responseBody)
-
         const responseBody = await response.json();
 
+        if (!response.ok)
+            return console.error('Failed to fetch ocean',responseBody)
 
         return responseBody
 
@@ -146,6 +167,31 @@ dataService.getOcean = async (user_token) => {
         throw error;
     }
 
+}
+
+dataService.getSealById = async (seal_id,user_token) =>{
+
+    try {
+
+        const response = await fetch(`${process.env.DATA_API_URL}/seals/${seal_id}`, {
+            method: 'get',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user_token}`
+            }
+        });
+
+        const seal =  await response.json();
+
+        if(!seal)
+            return console.error('Failed to fetch seasl', seal);
+
+        return seal;
+
+    } catch (error) {
+        console.error('Error get seal:', error);
+        throw error;
+    }
 }
 
 dataService.getAllSeals = async (user_token) => {
