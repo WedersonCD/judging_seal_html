@@ -148,6 +148,31 @@ dataService.getOcean = async (user_token) => {
 
 }
 
+dataService.getSealById = async(seal_id) =>{
+
+    try {
+
+        const response = await fetch(`${process.env.DATA_API_URL}/seals/${seal_id}`, {
+            method: 'get',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user_token}`
+            }
+        });
+
+        const seal =  response.json();
+
+        if(!seal)
+            return console.error('Failed to fetch seasl', seal);
+
+        return seal;
+
+    } catch (error) {
+        console.error('Error get seal:', error);
+        throw error;
+    }
+}
+
 dataService.getAllSeals = async (user_token) => {
 
     try {
