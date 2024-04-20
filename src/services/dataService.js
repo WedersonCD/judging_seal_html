@@ -122,6 +122,27 @@ dataService.getAllSealTemplates = async () => {
     }
 }
 
+dataService.updateSeal = async (user_token, sealData) => {
+    try {
+        const response = await fetch(`${process.env.DATA_API_URL}/seals/${sealData._id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user_token}`
+            },
+            body: JSON.stringify(sealData),
+        });
+        const responseBody = await response.json();
+
+        return responseBody
+
+    } catch (error) {
+        console.error('Error updating seal:', error.message);
+        throw error;
+    }
+}
+
+
 dataService.getOcean = async (user_token) => {
 
     try {

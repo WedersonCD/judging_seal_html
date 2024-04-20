@@ -11,12 +11,10 @@
             <hr>
             <div class="seal-moreOptions-options-option" _="
                 on click
-                  set sealId to '{{_id}}'
-                  js(sealId)
-                    return '/update_seal?sealId='+encodeURIComponent(sealId)
-                  end put the result into encodedLink
-
-                  fetch `${encodedLink}`    
+                    js() 
+                        return '/update_seal?sealId='+encodeURIComponent('{{_id}}')+'&rate={{seal_rate}}&name='+encodeURIComponent('{{seal_name}}')+'&hashtag='+encodeURIComponent('{{seal_hashtags}}')+'&description='+encodeURIComponent('{{seal_description}}')
+                    end put the result into encodedLink
+                    go to url `${encodedLink}`
  
                 end
                 "><span>edit</span>

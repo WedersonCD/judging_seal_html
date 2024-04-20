@@ -24,7 +24,7 @@ const templateRoutes = require(__dirname+'/routes/templateRoutes');
 app.use(parseCookieMiddleware)
 
 app.use(userRoutes);
-
+app.use(express.json())
 app.use(validadteAuthTokenMiddleware)
 app.use(sealRoutes);
 app.use(templateRoutes);

@@ -4,15 +4,66 @@ const UTILS = require('../services/utils');
 const sealController = {};
 
 sealController.newSeal =  (req, res) => {
+    req.query.is_new = true
     res.render('new_seal', req.query);
 };
 
+sealController.updateSeal =  (req, res) => {
+    req.query.is_new = false
+    res.render('new_seal', req.query);
+};
 
-sealController.updateSeal = async (req,res) =>{
+sealController.putSeal = async (req,res) =>{
+    try {
+        const hashtags = req.query.sealHashtag.split('#').filter(item => item.length > 1);
 
-    const seal = await dataService.getSealById(req.query.sealId,req.parsedCookies.user_token)
-    console.log('sseal--.',seal)
-    return res.render('new_seal', {seal: seal});
+        const seal = {
+            _id: req.params.sealId,
+            seal_name: req.query.name,
+            seal_rate: req.query.rate,
+            seal_description: req.query.sealDescription || '',
+            seal_hashtags: hashtags
+        };
+
+        const response = await dataService.updateSeal(req.parsedCookies.user_token, seal);
+
+        if(response)
+            res.status(200).send();
+        
+    } catch (error) {
+        console.error(error);
+        res.status(400).send();
+    }
+    
+
+
+}
+
+sealController.getSealById = async (req,res) =>{
+
+    try {
+        const seal = await dataService.getSealById(req.params.sealId,req.parsedCookies.user_token);
+
+        if(!seal)
+            return res.status(404).send();
+        
+        const sealVisible = {
+            seal_name: seal.seal_name,
+            seal_rate: seal.seal_rate,
+            seal_hashtags: seal.seal_hashtags.map(hashtag=> '#'+hashtag).join(','),
+            seal_description: seal.seal_description
+        }
+
+        return res.status(200).json(sealVisible);
+
+    } catch (error) {
+        console.error(error);
+        res.status(400).send();
+        
+    }
+
+
+
 }
 
 sealController.openOcean = async (req, res) => {
