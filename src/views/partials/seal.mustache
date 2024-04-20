@@ -14,8 +14,10 @@
                   set sealId to '{{_id}}'
                   js(sealId)
                     return '/update_seal?sealId='+encodeURIComponent(sealId)
-                  end put the result into encodedLink         
-                  go to url encodedLink
+                  end put the result into encodedLink
+
+                  fetch `${encodedLink}` with method:'PUT'         
+ 
                 end
                 "><span>edit</span>
             </div>
