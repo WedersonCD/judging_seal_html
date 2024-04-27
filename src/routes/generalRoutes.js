@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 router.get('/profile',(req,res)=>{
     try {
     
-        res.render('index');
+        res.render('profile');
 
         
     } catch (error) {
