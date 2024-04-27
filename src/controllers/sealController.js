@@ -8,9 +8,22 @@ sealController.newSeal =  (req, res) => {
     res.render('new_seal', req.query);
 };
 
-sealController.updateSeal =  (req, res) => {
-    req.query.is_new = false
-    res.render('new_seal', req.query);
+sealController.updateSeal =  async (req, res) => {
+
+    try {
+        let seal = await dataService.getSealById(req.params.sealId,req.parsedCookies.user_token)
+
+        if(!seal)
+            return res.status(404).send();
+
+        return res.render('new_seal', {is_new:false,seal: seal});
+
+    }catch(error){
+        console.error(error);
+        res.status(400).send();
+    }
+
+
 };
 
 sealController.putSeal = async (req,res) =>{
