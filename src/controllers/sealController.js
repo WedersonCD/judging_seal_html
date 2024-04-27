@@ -3,30 +3,29 @@ const UTILS = require('../services/utils');
 
 const sealController = {};
 
-sealController.newSeal =  (req, res) => {
+sealController.newSeal = (req, res) => {
     req.query.is_new = true
     res.render('new_seal', req.query);
 };
 
-sealController.updateSeal =  async (req, res) => {
+sealController.updateSeal = async (req, res) => {
 
     try {
-        let seal = await dataService.getSealById(req.params.sealId,req.parsedCookies.user_token)
+        let seal = await dataService.getSealById(req.params.sealId, req.parsedCookies.user_token)
 
-        if(!seal)
+        if (!seal)
             return res.status(404).send();
 
-        return res.render('new_seal', {is_new:false,seal: seal});
+        return res.render('new_seal', { is_new: false, seal: seal });
 
-    }catch(error){
+    } catch (error) {
         console.error(error);
         res.status(400).send();
     }
 
-
 };
 
-sealController.putSeal = async (req,res) =>{
+sealController.putSeal = async (req, res) => {
     try {
         const hashtags = req.query.sealHashtag.split('#').filter(item => item.length > 1);
 
@@ -40,30 +39,28 @@ sealController.putSeal = async (req,res) =>{
 
         const response = await dataService.updateSeal(req.parsedCookies.user_token, seal);
 
-        if(response)
+        if (response)
             res.status(200).send();
-        
+
     } catch (error) {
         console.error(error);
         res.status(400).send();
     }
-    
-
 
 }
 
-sealController.getSealById = async (req,res) =>{
+sealController.getSealById = async (req, res) => {
 
     try {
-        const seal = await dataService.getSealById(req.params.sealId,req.parsedCookies.user_token);
+        const seal = await dataService.getSealById(req.params.sealId, req.parsedCookies.user_token);
 
-        if(!seal)
+        if (!seal)
             return res.status(404).send();
-        
+
         const sealVisible = {
             seal_name: seal.seal_name,
             seal_rate: seal.seal_rate,
-            seal_hashtags: seal.seal_hashtags.map(hashtag=> '#'+hashtag).join(','),
+            seal_hashtags: seal.seal_hashtags.map(hashtag => '#' + hashtag).join(','),
             seal_description: seal.seal_description
         }
 
@@ -72,7 +69,7 @@ sealController.getSealById = async (req,res) =>{
     } catch (error) {
         console.error(error);
         res.status(400).send();
-        
+
     }
 
 
