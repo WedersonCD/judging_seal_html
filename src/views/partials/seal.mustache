@@ -12,7 +12,7 @@
             <div class="seal-moreOptions-options-option" _="
                 on click
                     js() 
-                        return '/update_seal?sealId='+encodeURIComponent('{{_id}}')+'&rate={{seal_rate}}&name='+encodeURIComponent('{{seal_name}}')+'&hashtag='+encodeURIComponent('{{seal_hashtags}}')+'&description='+encodeURIComponent('{{seal_description}}')
+                        return '/update_seal/'+encodeURIComponent('{{_id}}')
                     end put the result into encodedLink
                     go to url `${encodedLink}`
  

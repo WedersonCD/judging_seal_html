@@ -10,7 +10,7 @@ router.put('/seals/:sealId', sealController.putSeal);
 
 router.get('/ocean', sealController.openOcean);
 router.get('/new_seal', sealController.newSeal);
-router.get('/update_seal',sealController.updateSeal)
+router.get('/update_seal/:sealId',sealController.updateSeal)
 
 router.get('/seals/:sealId', sealController.getSealById);
 

@@ -6,10 +6,10 @@
     </head>
     <body>
         <div class="content flex-column width-90 justify-start">
-            <input type="text" value="{{name}}" class="content-sealName"
+            <input type="text" value="{{seal.seal_name}}" class="content-sealName"
                 placeholder="Title your seal">
             <div class="content-rating" _="init
-            set rate to '{{rate}}' or '1'
+            set rate to '{{seal.seal_rate}}' or '1'
             log rate
             call getStars(rate)
             put it into me
@@ -27,10 +27,10 @@
 
         end
         "></div>
-            <textarea class="content-sealDescription" placeholder="Wanna talk more about it?">{{description}}</textarea>
-            <input type="text" value="{{hashtag}}" class="content-sealHashtag" placeholder="# your seal" _="
+            <textarea class="content-sealDescription" placeholder="Wanna talk more about it?">{{seal.seal_description}}</textarea>
+            <input type="text" value="{{seal.seal_hashtags}}" class="content-sealHashtag" placeholder="# your seal" _="
             init
-                set hashtags to '{{hashtag}}'
+                set hashtags to '{{seal.seal_hashtags}}'
                 
                 set @value to hashtags.split(',').map( \ hashtag -> '#'+hashtag).join('')
             end
@@ -45,7 +45,7 @@
                             set name to .content-sealName.value
                             set sealHashtag to .content-sealHashtag.value
                             set sealDescription to .content-sealDescription.value
-                            set rate to @rate or '{{rate}}'
+                            set rate to @rate or '{{seal.seal_rate}}'
 
                             {{#is_new}}
                                 js(rate,name,sealHashtag,sealDescription)
@@ -55,7 +55,7 @@
                             {{/is_new}}
                             {{^is_new}}
                                 js(rate,name,sealHashtag,sealDescription)
-                                    return '/seals/{{sealId}}'+'?rate='+encodeURIComponent(rate)+'&name='+encodeURIComponent(name)+'&sealHashtag='+encodeURIComponent(sealHashtag)+'&sealDescription='+encodeURIComponent(sealDescription)
+                                    return '/seals/{{seal._id}}'+'?rate='+encodeURIComponent(rate)+'&name='+encodeURIComponent(name)+'&sealHashtag='+encodeURIComponent(sealHashtag)+'&sealDescription='+encodeURIComponent(sealDescription)
                                 end put the result into encodedLink
                                 fetch `${encodedLink}` with method:'PUT' 
                             {{/is_new}}
