@@ -3,6 +3,8 @@
     <head>
     {{> partials/head}}
     <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/seals.css">
+
     </head>    
     <body>
         <div class="content">
@@ -33,7 +35,12 @@
                     <div class="container-head-option">mood</div>
                 </div>
                 <div class="container-content">
-                    sou algo
+                    <div class="sealContainer">
+                        {{#seals}}
+                        {{> partials/seal}}
+                        <hr/>
+                        {{/seals}}
+                        </div>
                 </div>
             </section>
         </div>

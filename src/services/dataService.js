@@ -204,7 +204,6 @@ dataService.getAllSeals = async (user_token) => {
                 'Authorization': `Bearer ${user_token}`
             }
         });
-
         const responseBody = await response.json();
 
         if (!response.ok)
