@@ -4,7 +4,7 @@
     {{> partials/head}}
     <link rel="stylesheet" href="/css/profile.css">
     <link rel="stylesheet" href="/css/seals.css">
-
+    <script src='/js/echarts.min.js'></script>
     </head>    
     <body>
         <div class="content">
@@ -13,18 +13,18 @@
                     <h2>PROFILE</h2>
                 </span>
             </section>
-            <section class="flex-column flex-4">
+            <section class="flex-column">
             
             <div class="flex-row text-align-center justify-center align-center">
                 <div class="flex-column">
-                    <span>52</span>
+                    <span>{{qtdSeals}}</span>
                     <span>seals</span>
                 </div>
                 <div class="margin-horizontal-10">
                     <img class="border-circle" src="/images/seal.png" height="50px" width="50px"/>
                 </div>
                 <div class="flex-column">
-                    <span>578</span>
+                    <span>{{qtdStars}}</span>
                     <span>stars</span>
                 </div>
             </div>
@@ -45,10 +45,24 @@
                         <hr/>
                         {{/seals}}
                     </div>
-                    <div class="container-content-item container-content-item-mood display-none">
-                        <h1><b>graficograficograficograficograficografico</b> </h1>
-                    </div>
+                    <div class="container-content-item container-content-item-mood display-none" _="
+                    init
+                        set option to '{{starLineChartOption}}'
+                        call JSON.parse(option)
+                        set option to result
+                        
+                        call echarts.init(I)
+                        set chart to result
 
+                        call chart.setOption(option)
+                    end
+
+                    on mutation
+                        call echarts.getInstanceByDom(I)
+                        set chart to result
+                        call chart.resize()
+                    end
+                    ">
                 </div>
             </section>
         </div>

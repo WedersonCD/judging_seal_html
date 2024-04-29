@@ -60,7 +60,6 @@
             js(user_name,user_psw)
                 return 'user_name='+encodeURIComponent(user_name)+'&user_psw='+encodeURIComponent(user_psw)
             end put the result into encodedLink
-            log encodedLink
             fetch /new_user with method: 'POST', body: `${encodedLink}`
         end
 

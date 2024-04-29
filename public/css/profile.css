@@ -3,12 +3,12 @@
     flex-direction: column;
     width: 100%;
     overflow: hidden;
+    height: 100vh;
 
 }
 .container {
     margin-top: 50px;
     display:flex;
-    flex: 6;
     flex-direction: column;
 }
 .container-head {
@@ -33,4 +33,12 @@
 .container-head-option.selected{
     background-color: var(--color-primary);
     color: var(--color-neutral);
+}
+
+.container-content-item {
+    height: 100vh;
+}
+
+.container-content-item-mood{
+    max-height: 400px;
 }

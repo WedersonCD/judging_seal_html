@@ -56,7 +56,12 @@ userController.profile= async (req,res)=>{
 
         seals.sort((a, b) => a.seal_updatedAt > b.seal_updatedAt ? -1 : 1);
         
-        res.render('profile', { seals:seals });
+        const qtdSeals = seals.length;
+        const qtdStars = seals.reduce((totalStarts,seal) => totalStarts+seal.seal_rate,0);
+
+        const starLineChartOption = JSON.stringify(UTILS.getStarLineChartOption(seals))
+        
+        res.render('profile', { seals:seals,qtdSeals:qtdSeals,qtdStars:qtdStars,starLineChartOption:starLineChartOption });
         
     } catch (error) {
         console.error('Error get seals list:', error);
