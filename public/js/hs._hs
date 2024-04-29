@@ -33,7 +33,7 @@ behavior containerTabChanging(containerTabClass, containerContentClassToHide,con
         add .selected
 
         add .display-none to containerContentClassToHide
-
         remove .display-none from containerContentClassToShow
+        
     end
 end
