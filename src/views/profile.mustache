@@ -13,7 +13,9 @@
                     <h2>PROFILE</h2>
                 </span>
             </section>
-            <section class="flex-row text-align-center justify-center align-center">
+            <section class="flex-column flex-4">
+            
+            <div class="flex-row text-align-center justify-center align-center">
                 <div class="flex-column">
                     <span>52</span>
                     <span>seals</span>
@@ -25,22 +27,28 @@
                     <span>578</span>
                     <span>stars</span>
                 </div>
-            </section>
+            </div>
             <div class="flex-row text-align-center justify-center align-center">
                 WEDERSON DOMINGUES
             </div>
+            </section>
             <section class="container">
                 <div class="container-head">
-                    <div class="container-head-option selected">seals</div>
-                    <div class="container-head-option">mood</div>
+                    <div class="container-head-option selected" _="install containerTabChanging(containerTabClass: .container-head-option,containerContentClassToHide: .container-content-item,containerContentClassToShow: .container-content-item-seals) end">seals</div>
+                    <div class="container-head-option" _="install containerTabChanging(containerTabClass: .container-head-option,containerContentClassToHide: .container-content-item,containerContentClassToShow: .container-content-item-mood) end">mood</div>
                 </div>
                 <div class="container-content">
-                    <div class="sealContainer">
+
+                    <div class="container-content-item container-content-item-seals sealContainer">
                         {{#seals}}
                         {{> partials/seal}}
                         <hr/>
                         {{/seals}}
-                        </div>
+                    </div>
+                    <div class="container-content-item container-content-item-mood display-none">
+                        <h1><b>graficograficograficograficograficografico</b> </h1>
+                    </div>
+
                 </div>
             </section>
         </div>
