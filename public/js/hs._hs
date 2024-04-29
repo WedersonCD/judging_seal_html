@@ -26,3 +26,14 @@ def getStars(starts)
     end
     return contentRatingStarts
 end 
+
+behavior containerTabChanging(containerTabClass, containerContentClassToHide,containerContentClassToShow)
+    on click 
+        remove .selected from containerTabClass
+        add .selected
+
+        add .display-none to containerContentClassToHide
+        remove .display-none from containerContentClassToShow
+        
+    end
+end

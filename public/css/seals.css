@@ -1,0 +1,87 @@
+.sealContainer {
+    overflow-y: scroll;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+}
+
+.seal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    border-bottom: 1px solid var(--color-primary);
+}
+
+.seal-description{
+    margin:5px;
+    display: -webkit-box;
+    -webkit-line-clamp: 5; /* Number of lines you want to display */
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: justify;  
+    margin-bottom: 10px;
+}
+.seal-hashtags{
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap:wrap;
+    max-height: 100px;
+}
+
+.seal-hashtags div {
+    margin:5px;
+}
+
+.new-seal {
+    display: flex;
+    
+    border-radius: 100%;
+    border: none;
+
+    height: 50px;
+    width: 50px;
+
+    position: fixed;
+    right: 10px;
+    bottom: 60px;
+    z-index: 999;
+
+    background-color: var(--color-primary);
+    color: white;
+    opacity: 50%;
+
+    align-items: center;
+    justify-content: center;
+
+}
+
+.new-seal:hover {
+    opacity: 100%;
+}
+
+.seal-moreOptions{
+    height: 30px;
+    width: 30px;
+    align-self: flex-end;
+    text-align: center;
+    left: 5px;
+}
+
+.seal-moreOptions-options{
+    z-index: 999;
+    background-color: white;
+    border: 1px solid var(--color-primary);
+    text-align: end;
+    min-width: 50px;
+    position: absolute;
+    right: 5px;
+    padding: 5px;
+}
+
+.seal-moreOptions-options-option{
+    min-height: 15px;
+}
