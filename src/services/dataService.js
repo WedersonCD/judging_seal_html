@@ -218,7 +218,26 @@ dataService.getAllSeals = async (user_token) => {
 
 }
 
+dataService.getUser = async (user_token,user_id) => {
 
+    try {
+        const response = await fetch(`${process.env.DATA_API_URL}/users/${user_id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user_token}`
+            }
+        });
+
+        if (response.ok)
+            return await response.json();
+
+        console.error('Error getting user:', response);
+
+    } catch (error) {
+        console.error('Error getting user:', error.message);
+    }
+}
 
 
 module.exports = dataService

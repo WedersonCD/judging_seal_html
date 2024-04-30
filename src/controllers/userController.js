@@ -61,7 +61,9 @@ userController.profile= async (req,res)=>{
 
         const starLineChartOption = JSON.stringify(UTILS.getStarLineChartOption(seals))
         
-        res.render('profile', { seals:seals,qtdSeals:qtdSeals,qtdStars:qtdStars,starLineChartOption:starLineChartOption });
+        const user = await dataService.getUser(req.parsedCookies.user_token,req.parsedCookies.user_id);
+        console.log(user)
+        res.render('profile', { seals:seals,qtdSeals:qtdSeals,qtdStars:qtdStars,starLineChartOption:starLineChartOption,user:user});
         
     } catch (error) {
         console.error('Error get seals list:', error);
