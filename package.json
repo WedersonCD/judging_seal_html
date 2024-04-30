@@ -4,14 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "builtRun": "npm run built && npm run dev",
+    "built": "tsc && xcopy /I /E /Y src\\views built\\views",
     "start": "node src/app.js",
-    "dev": "nodemon -e js,mustache,html,json,yml,_hs,css --env-file=.env src/app.js"
+    "dev": "nodemon -e js,mustache,html,json,yml,_hs,css,ts --env-file=.env built/app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^20.12.7",
     "express": "^4.18.3",
-    "mustache-express": "^1.3.2"
+    "mustache-express": "^1.3.2",
+    "ts-node": "^10.9.2"
   }
 }
