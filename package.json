@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "builtRun": "npm run built && npm run dev",
-    "built": "tsc && xcopy /I /E /Y src\\views built\\views",
-    "start": "node src/app.js",
+    "builtRun": "npm run builtDev && npm run dev",
+    "builtDev": "tsc && xcopy /I /E /Y src\\views built\\views",
+    "built": "tsc && cp -R src\\views built\\views",
+    "start": "node built/app.js",
     "dev": "nodemon -e js,mustache,html,json,yml,_hs,css,ts --env-file=.env built/app.js"
   },
   "keywords": [],
