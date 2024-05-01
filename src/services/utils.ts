@@ -1,6 +1,9 @@
-const utils = {}
+import { Seal } from "../types";
 
-utils.dateTimeStringToDate = (dateInString) => {
+
+const utils:any = {}
+
+utils.dateTimeStringToDate = (dateInString:string):string => {
 
     //chaging the timeZone to UTC-3
     let date = new Date(dateInString);
@@ -9,11 +12,11 @@ utils.dateTimeStringToDate = (dateInString) => {
 
 }
 
-utils.getShareableText = (seal) => {
-
+utils.getShareableText = (seal:Seal):string => {
+    
     let stars = ''
 
-    for (x = 1; x <= 5; x++) {
+    for (let x = 1; x <= 5; x++) {
 
         stars = stars + ((x <= seal.seal_rate) ? '⭐' : '☆');
 
@@ -34,11 +37,13 @@ https://judgingseal.com.br/ (do not forget your account)
 
 }
 
-utils.getStarLineChartOption = (seals) => {
+utils.getStarLineChartOption = (seals:Seal[]):object => {
 
-    const dateAndRates = {}
+    const dateAndRates:any = {}
 
-    seals.forEach((seal)=>{
+    seals.forEach((seal:Seal)=>{
+        if(typeof seal.date !== 'string')
+            return;
 
         if(!dateAndRates[seal.date])
             dateAndRates[seal.date]={sum: 0, qtd: 0};
@@ -48,11 +53,11 @@ utils.getStarLineChartOption = (seals) => {
 
     });
 
-    const rates = [];
-    const dates = [];
+    const rates:number[] = [];
+    const dates:string[] = [];
 
     for (let date in dateAndRates){
-        let dateAndRate = dateAndRates[date]
+        let dateAndRate = dateAndRates[date];
         dates.push(date);
         rates.push(dateAndRate.sum / dateAndRate.qtd)
     }

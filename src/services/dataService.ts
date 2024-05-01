@@ -1,7 +1,7 @@
 
-const dataService = {}
+const dataService:any = {}
 
-dataService.createSeal = async (user_token, sealData) => {
+dataService.createSeal = async (user_token:string, sealData:{}) => {
 
     try {
         const response = await fetch(`${process.env.DATA_API_URL}/seals`, {
@@ -20,7 +20,7 @@ dataService.createSeal = async (user_token, sealData) => {
     }
 }
 
-dataService.deleteSeal = async (user_token, sealId) => {
+dataService.deleteSeal = async (user_token:string, sealId:string) => {
     try {
         const deletedSeal = await fetch(`${process.env.DATA_API_URL}/seals?sealId=${sealId}`, {
             method: 'DELETE',
@@ -41,7 +41,12 @@ dataService.deleteSeal = async (user_token, sealId) => {
     }
 }
 
-dataService.newUser = async (user) => {
+export interface UserPreRegister {
+    user_name:string,
+    user_psw:string
+}
+
+dataService.newUser = async (user:UserPreRegister) => {
 
     try {
         const response = await fetch(`${process.env.DATA_API_URL}/users`, {
@@ -60,7 +65,7 @@ dataService.newUser = async (user) => {
     }
 }
 
-dataService.login = async (user) => {
+dataService.login = async (user:UserPreRegister) => {
 
     try {
         const response = await fetch(`${process.env.DATA_API_URL}/users/login`, {
@@ -79,10 +84,10 @@ dataService.login = async (user) => {
     }
 }
 
-dataService.createSealTemplate = async (templates)=>{
+dataService.createSealTemplate = async (templates:any[])=>{
 
     try {
-        templates.forEach(async (template)=>{
+        templates.forEach(async (template:{})=>{
 
             await fetch(`${process.env.DATA_API_URL}/seal-template`, {
                 headers: {
@@ -95,22 +100,22 @@ dataService.createSealTemplate = async (templates)=>{
         });
 
     }catch(err){
-        console.err(err)
+        console.error(err)
     }
 }
 
 dataService.getAllSealTemplates = async () => {
 
     try {
-        const response = await fetch(`${process.env.DATA_API_URL}/seal-template`, { mehod: 'get' })
+        const response = await fetch(`${process.env.DATA_API_URL}/seal-template`)
 
         const responseBody = await response.json();
 
         if (!response.ok)
             return console.error('Failed to fetch seals template', responseBody);
 
-        const sealTemplates = responseBody.map((sealTemplate)=>{
-            sealTemplate.seal_hashtags = sealTemplate.seal_hashtags.map((hashtag)=>{return '#'+hashtag}).concat(' ')
+        const sealTemplates = responseBody.map((sealTemplate:any)=>{
+            sealTemplate.seal_hashtags = sealTemplate.seal_hashtags.map((hashtag:string)=>{return '#'+hashtag}).concat(' ')
             return sealTemplate
         })
 
@@ -122,8 +127,10 @@ dataService.getAllSealTemplates = async () => {
     }
 }
 
-dataService.updateSeal = async (user_token, sealData) => {
+                                                    //must have at least the attribute _id
+dataService.updateSeal = async (user_token:string, sealData:{_id: string;[key: string]: any}) => {
     try {
+
         const response = await fetch(`${process.env.DATA_API_URL}/seals/${sealData._id}`, {
             method: 'PUT',
             headers: {
@@ -143,7 +150,7 @@ dataService.updateSeal = async (user_token, sealData) => {
 }
 
 
-dataService.getOcean = async (user_token) => {
+dataService.getOcean = async (user_token:string) => {
 
     try {
 
@@ -169,7 +176,7 @@ dataService.getOcean = async (user_token) => {
 
 }
 
-dataService.getSealById = async (seal_id,user_token) =>{
+dataService.getSealById = async (seal_id:string,user_token:string) =>{
 
     try {
 
@@ -194,7 +201,7 @@ dataService.getSealById = async (seal_id,user_token) =>{
     }
 }
 
-dataService.getAllSeals = async (user_token) => {
+dataService.getAllSeals = async (user_token:string) => {
 
     try {
         const response = await fetch(`${process.env.DATA_API_URL}/seals`, {
@@ -218,7 +225,7 @@ dataService.getAllSeals = async (user_token) => {
 
 }
 
-dataService.getUser = async (user_token,user_id) => {
+dataService.getUser = async (user_token:string,user_id:string) => {
 
     try {
         const response = await fetch(`${process.env.DATA_API_URL}/users/${user_id}`, {

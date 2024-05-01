@@ -1,11 +1,14 @@
-async function parseCookieMiddleware(req, res, next) {
+import { Response, NextFunction} from 'express'
+import { ParsedCookies, RequestTrated } from '../types';
+
+async function parseCookieMiddleware(req:RequestTrated, res:Response, next:NextFunction) {
     
     const headerCookies = req.headers.cookie;
 
     if(!headerCookies)
         return next();
 
-    const parsedCookies = {}    
+    const parsedCookies:any = {}    
 
     headerCookies.split(';').forEach(pair =>{
         const index = pair.indexOf('=');
