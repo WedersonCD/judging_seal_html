@@ -1,15 +1,18 @@
 const dataService = require('../services/dataService');
 const UTILS = require('../services/utils');
 
-const userController = {}
+const userController:any = {}
 
-function setUserCookie(res,response){
+import { Request,Response } from "express";
+import { RequestTrated,Seal } from "../types";
+
+function setUserCookie(res:any, response:any){
 
     res.cookie('user_token', response.token);
     res.cookie('user_id', response.user._id);
 }
 
-userController.login = async (req, res) => {
+userController.login = async (req:Request, res:Response) => {
     try {
         const { user_name, user_psw } = req.body;
         const response = await dataService.login({ user_name, user_psw });
@@ -26,7 +29,7 @@ userController.login = async (req, res) => {
     }
 };
 
-userController.newUser = async (req, res) => {
+userController.newUser = async (req:RequestTrated, res:Response) => {
     try {
         const { user_name, user_psw } = req.body;
         const response = await dataService.newUser({ user_name, user_psw });
@@ -43,21 +46,21 @@ userController.newUser = async (req, res) => {
     }
 };
 
-userController.profile= async (req,res)=>{
+userController.profile= async (req:RequestTrated, res:Response)=>{
     try {
 
-        const seals = await dataService.getAllSeals(req.parsedCookies.user_token);
+        const seals:Seal[] = await dataService.getAllSeals(req.parsedCookies.user_token);
 
-        seals.forEach(seal => {
+        seals.forEach((seal:Seal) => {
             seal.shareableText = UTILS.getShareableText(seal);
             seal.date = UTILS.dateTimeStringToDate(seal.seal_updatedAt);
             seal.is_the_author = req.parsedCookies.user_id === seal.user;
         });
 
-        seals.sort((a, b) => a.seal_updatedAt > b.seal_updatedAt ? -1 : 1);
+        seals.sort((a:Seal, b:Seal) => a.seal_updatedAt > b.seal_updatedAt ? -1 : 1);
         
         const qtdSeals = seals.length;
-        const qtdStars = seals.reduce((totalStarts,seal) => totalStarts+seal.seal_rate,0);
+        const qtdStars = seals.reduce((totalStarts:number,seal:Seal) => totalStarts+seal.seal_rate,0);
 
         const starLineChartOption = JSON.stringify(UTILS.getStarLineChartOption(seals))
         

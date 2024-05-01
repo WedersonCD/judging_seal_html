@@ -1,17 +1,20 @@
 const dataService = require('../services/dataService');
 const UTILS = require('../services/utils');
 
-const sealController = {};
+const sealController:any = {};
+import { Response } from "express";
+import { RequestTrated } from "../types";
+import { Seal } from "../types";
 
-sealController.newSeal = (req, res) => {
+sealController.newSeal = (req:RequestTrated, res:Response) => {
     req.query.is_new = true
     res.render('new_seal', req.query);
 };
 
-sealController.updateSeal = async (req, res) => {
+sealController.updateSeal = async (req:RequestTrated, res:Response) => {
 
     try {
-        let seal = await dataService.getSealById(req.params.sealId, req.parsedCookies.user_token)
+        let seal:Seal = await dataService.getSealById(req.params.sealId, req.parsedCookies.user_token)
 
         if (!seal)
             return res.status(404).send();
@@ -25,9 +28,9 @@ sealController.updateSeal = async (req, res) => {
 
 };
 
-sealController.putSeal = async (req, res) => {
+sealController.putSeal = async (req:RequestTrated, res:Response) => {
     try {
-        const hashtags = req.query.sealHashtag.split('#').filter(item => item.length > 1);
+        const hashtags = req.query.sealHashtag.split('#').filter((item:string) => item.length > 1);
 
         const seal = {
             _id: req.params.sealId,
@@ -49,10 +52,10 @@ sealController.putSeal = async (req, res) => {
 
 }
 
-sealController.getSealById = async (req, res) => {
+sealController.getSealById = async (req:RequestTrated, res:Response) => {
 
     try {
-        const seal = await dataService.getSealById(req.params.sealId, req.parsedCookies.user_token);
+        const seal:Seal = await dataService.getSealById(req.params.sealId, req.parsedCookies.user_token);
 
         if (!seal)
             return res.status(404).send();
@@ -60,7 +63,7 @@ sealController.getSealById = async (req, res) => {
         const sealVisible = {
             seal_name: seal.seal_name,
             seal_rate: seal.seal_rate,
-            seal_hashtags: seal.seal_hashtags.map(hashtag => '#' + hashtag).join(','),
+            seal_hashtags: seal.seal_hashtags.map((hashtag:string) => '#' + hashtag).join(','),
             seal_description: seal.seal_description
         }
 
@@ -76,16 +79,16 @@ sealController.getSealById = async (req, res) => {
 
 }
 
-sealController.openOcean = async (req, res) => {
+sealController.openOcean = async (req:RequestTrated, res:Response) => {
     try {
-        const seals = await dataService.getOcean(req.parsedCookies.user_token);
+        const seals:Seal[] = await dataService.getOcean(req.parsedCookies.user_token);
 
-        seals.forEach(seal => {
+        seals.forEach((seal:Seal) => {
             seal.shareableText = UTILS.getShareableText(seal);
             seal.date = UTILS.dateTimeStringToDate(seal.seal_updatedAt);
             seal.is_the_author = req.parsedCookies.user_id === seal.user;
         });
-        seals.sort((a, b) => a.seal_updatedAt > b.seal_updatedAt ? -1 : 1);
+        seals.sort((a:Seal, b:Seal) => a.seal_updatedAt > b.seal_updatedAt ? -1 : 1);
         res.render('ocean', { seals });
     } catch (error) {
         console.error(error);
@@ -93,8 +96,8 @@ sealController.openOcean = async (req, res) => {
     }
 };
 
-sealController.createSeal = async (req, res) => {
-    const hashtags = req.query.sealHashtag.split('#').filter(item => item.length > 1);
+sealController.createSeal = async (req:RequestTrated, res:Response) => {
+    const hashtags = req.query.sealHashtag.split('#').filter((item:string) => item.length > 1);
     const newSeal = {
         seal_name: req.query.name,
         seal_rate: req.query.rate,
@@ -110,13 +113,15 @@ sealController.createSeal = async (req, res) => {
     }
 };
 
-sealController.deleteSeal = async (req, res) => {
+sealController.deleteSeal = async (req:RequestTrated, res:Response) => {
     try {
-        const sealId = req.query.sealId;
+        const sealId:string = req.query.sealId;
+
         if (!sealId)
             return res.status(400).json({ message: 'bad request missing sealId' });
 
         const response = dataService.deleteSeal(req.parsedCookies.user_token, sealId);
+        
         if (!response) {
             console.error('Fail in delete seal route');
             return res.status(400).send();

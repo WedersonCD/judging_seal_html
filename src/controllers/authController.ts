@@ -1,8 +1,12 @@
 const dataService = require('../services/dataService');
 
-const authController ={}
+const authController:any ={}
 
-authController.login = async (req, res) => {
+import { Request, Response } from "express";
+
+import { RequestTrated } from "../types";
+
+authController.login = async (req:Request, res:Response) => {
     
     try {
         const user_name = req.body.user_name;
@@ -21,7 +25,7 @@ authController.login = async (req, res) => {
     }
 };
 
-authController.newUser = async (req, res) => {
+authController.newUser = async (req:Request, res:Response) => {
     try {
         const user_name = req.body.user_name;
         const user_psw = req.body.user_psw;
@@ -38,7 +42,7 @@ authController.newUser = async (req, res) => {
     }
 };
 
-authController.logout = (req, res) => {
+authController.logout = (req:Request, res:Response) => {
     res.clearCookie('user_token');
     res.render('login');
 };

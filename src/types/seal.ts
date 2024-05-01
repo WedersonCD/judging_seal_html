@@ -7,5 +7,7 @@ export interface Seal {
     seal_isOnLastest: Boolean,
     seal_description: string,
     user: string,
-    date?:string | Date
+    date?:string | Date,
+    shareableText?:string,
+    is_the_author?:boolean
 }
