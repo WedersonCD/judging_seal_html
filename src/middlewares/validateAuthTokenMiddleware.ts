@@ -1,4 +1,8 @@
-async function validadteAuthTokenMiddleware(req, res, next) {
+
+import { Response,NextFunction } from "express";
+import { RequestTrated } from "../types";
+
+async function validadteAuthTokenMiddleware(req: RequestTrated, res:Response, next:NextFunction) {
 
     //don't run this middleware on login endpoint
     if (req.path === '/login')
