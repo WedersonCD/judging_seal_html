@@ -1,5 +1,4 @@
-const express = require('express');
-const dataService = require('../services/dataService');
+import express from 'express'
 const router = express.Router();
 
 // General page routes
