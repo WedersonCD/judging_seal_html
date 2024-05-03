@@ -13,7 +13,7 @@
         </section>
 
         <section class="input">
-            <input type="text" id="user_name" name="user_name" placeholder='user'> 
+            <input type="email" id="user_email" name="user_email" placeholder='mail@gmail.com' _="install validateEmail"> 
             <input type="password" id="user_psw" name="user_psw" placeholder='password'>   
         </section>
 
@@ -22,10 +22,10 @@
         <div class="login button-primary clickable" _="
         on click
             
-            set user_name to #user_name.value
+            set user_email to #user_email.value
             set user_psw to #user_psw.value
-            js(user_name,user_psw)
-                return 'user_name='+encodeURIComponent(user_name)+'&user_psw='+encodeURIComponent(user_psw)
+            js(user_email,user_psw)
+                return 'user_email='+encodeURIComponent(user_email)+'&user_psw='+encodeURIComponent(user_psw)
             end put the result into encodedLink
 
             fetch /login with method: 'POST', body: `${encodedLink}`
@@ -55,10 +55,10 @@
         <div class="margin-top-5 clickable" _="
         on click
 
-            set user_name to #user_name.value
+            set user_email to #user_email.value
             set user_psw to #user_psw.value
-            js(user_name,user_psw)
-                return 'user_name='+encodeURIComponent(user_name)+'&user_psw='+encodeURIComponent(user_psw)
+            js(user_email,user_psw)
+                return 'user_email='+encodeURIComponent(user_email)+'&user_psw='+encodeURIComponent(user_psw)
             end put the result into encodedLink
             fetch /new_user with method: 'POST', body: `${encodedLink}`
         end
