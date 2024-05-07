@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "built": "bun build src/app.ts --outdir built",
-    "start": "npx -y bun src/app.js",
+    "start": "npx -y bun src/app.ts",
     "dev": "bun --watch run src/app.ts"
   },
   "keywords": [],
