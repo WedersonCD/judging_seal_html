@@ -247,4 +247,4 @@ dataService.getUser = async (user_token:string,user_id:string) => {
 }
 
 
-module.exports = dataService
+export default dataService

@@ -1,5 +1,5 @@
-const dataService = require('../services/dataService');
-const UTILS = require('../services/utils');
+import dataService from '../services/dataService';
+import UTILS from '../services/utils';
 
 const userController:any = {}
 
@@ -73,4 +73,4 @@ userController.profile= async (req:RequestTrated, res:Response)=>{
     }
 }
 
-module.exports = userController
+export default userController
