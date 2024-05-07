@@ -16,3 +16,8 @@ export interface UserNew {
     user_nickName?: string;
     user_psw: string;
 } 
+
+export interface UserLogin {
+  user_email: string;
+  user_psw: string;
+} 
