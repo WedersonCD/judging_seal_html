@@ -1,6 +1,6 @@
 import express from 'express'
 const router = express.Router();
-const sealController = require('../controllers/sealController');
+import sealController from '../controllers/sealController';
 
 // Routes for creating and deleting seals
 router.post('/new_seal', sealController.createSeal);
@@ -14,4 +14,4 @@ router.get('/update_seal/:sealId',sealController.updateSeal)
 
 router.get('/seals/:sealId', sealController.getSealById);
 
-module.exports = router;
+export default router;

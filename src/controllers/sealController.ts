@@ -1,5 +1,5 @@
-const dataService = require('../services/dataService');
-const UTILS = require('../services/utils');
+import dataService from '../services/dataService';
+import UTILS from '../services/utils';
 
 const sealController:any = {};
 import { Response } from "express";
@@ -133,4 +133,4 @@ sealController.deleteSeal = async (req:RequestTrated, res:Response) => {
     }
 };
 
-module.exports = sealController
+export default sealController

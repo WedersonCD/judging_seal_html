@@ -1,5 +1,5 @@
-const express = require('express');
-const mustacheExpress = require('mustache-express');
+import express from 'express';
+import mustacheExpress from 'mustache-express';
 const app = express();
 
 // Register '.mustache' extension with The Mustache Express
@@ -12,14 +12,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 //MIDDLEWARE
-const parseCookieMiddleware = require(__dirname+'/middlewares/parseCookieMiddleware');
-const validadteAuthTokenMiddleware = require(__dirname+'/middlewares/validateAuthTokenMiddleware');
+import parseCookieMiddleware from './middlewares/parseCookieMiddleware';
+import validadteAuthTokenMiddleware from './middlewares/validateAuthTokenMiddleware';
 
 //ROUTES
-const generalRoutes = require(__dirname+'/routes/generalRoutes');
-const sealRoutes = require(__dirname+'/routes/sealRoutes');
-const userRoutes = require(__dirname+'/routes/userRoutes');
-const templateRoutes = require(__dirname+'/routes/templateRoutes');
+import generalRoutes from './routes/generalRoutes.js';
+import sealRoutes from './/routes/sealRoutes.js';
+import userRoutes from './/routes/userRoutes.js';
+import templateRoutes from './/routes/templateRoutes.js';
 
 app.use(parseCookieMiddleware)
 

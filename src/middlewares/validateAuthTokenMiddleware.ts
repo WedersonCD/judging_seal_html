@@ -15,4 +15,4 @@ async function validadteAuthTokenMiddleware(req: RequestTrated, res:Response, ne
     
 }
 
-module.exports = validadteAuthTokenMiddleware;
+export default validadteAuthTokenMiddleware;

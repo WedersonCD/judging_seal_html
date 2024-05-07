@@ -1,4 +1,4 @@
-const dataService = require('../services/dataService');
+import dataService from '../services/dataService';
 
 const authController:any ={}
 
@@ -47,4 +47,4 @@ authController.logout = (req:Request, res:Response) => {
     res.render('login');
 };
 
-module.exports = authController
+export default authController

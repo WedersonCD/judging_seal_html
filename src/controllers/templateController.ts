@@ -1,4 +1,4 @@
-const dataService = require('../services/dataService');
+import dataService from '../services/dataService';
 
 const templateController:any = {}
 
@@ -15,4 +15,4 @@ templateController.showCreateTemplate = (req:RequestTrated, res:Response)=> {
     res.render('create_template');
 };
 
-module.exports = templateController;
+export default templateController;
