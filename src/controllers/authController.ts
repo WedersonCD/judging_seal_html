@@ -9,9 +9,9 @@ import { RequestTrated } from "../types";
 authController.login = async (req:Request, res:Response) => {
     
     try {
-        const user_name = req.body.user_name;
+        const user_email = req.body.user_email;
         const user_psw = req.body.user_psw;
-        const response = await dataService.login({ user_name, user_psw });
+        const response = await dataService.login({ user_email, user_psw });
 
         if (!response)
             return res.status(401).send();
@@ -27,9 +27,14 @@ authController.login = async (req:Request, res:Response) => {
 
 authController.newUser = async (req:Request, res:Response) => {
     try {
-        const user_name = req.body.user_name;
-        const user_psw = req.body.user_psw;
-        const response = await dataService.newUser({ user_name, user_psw });
+        const user_email:string    = req.body.user_email;
+        const user_name:string     = req.body.user_name;
+        const user_nickName:string = req.body.user_nickName || req.body.user_name;
+        const user_psw:string      = req.body.user_psw;
+        
+        
+
+        const response = await dataService.newUser({ user_email, user_psw });
 
         if (!response)
             return res.status(401).send();

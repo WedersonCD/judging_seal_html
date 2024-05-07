@@ -14,8 +14,8 @@ function setUserCookie(res:any, response:any){
 
 userController.login = async (req:Request, res:Response) => {
     try {
-        const { user_name, user_psw } = req.body;
-        const response = await dataService.login({ user_name, user_psw });
+        const { user_email, user_psw } = req.body;
+        const response = await dataService.login({ user_email, user_psw });
 
         if (!response)
             return res.status(401).send();
@@ -31,8 +31,8 @@ userController.login = async (req:Request, res:Response) => {
 
 userController.newUser = async (req:RequestTrated, res:Response) => {
     try {
-        const { user_name, user_psw } = req.body;
-        const response = await dataService.newUser({ user_name, user_psw });
+        const { user_email, user_psw } = req.body;
+        const response = await dataService.newUser({ user_email, user_psw });
 
         if (!response)
             return res.status(401).send();
