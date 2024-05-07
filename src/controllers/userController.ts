@@ -4,7 +4,7 @@ import UTILS from '../services/utils';
 const userController:any = {}
 
 import { Request,Response } from "express";
-import { RequestTrated,Seal,UserLogin,UserNew } from "../types";
+import { RequestTrated,Seal,User,UserLogin,UserNew } from "../types";
 
 function setUserCookie(res:any, response:any){
 
@@ -14,8 +14,13 @@ function setUserCookie(res:any, response:any){
 
 userController.login = async (req:Request, res:Response) => {
     try {
-        const { user_email, user_psw } = req.body;
-        const response = await dataService.login({ user_email, user_psw });
+        
+        const userLogin:UserLogin ={
+            user_email:req.body.user_email,
+            user_psw:req.body.user_psw
+        }
+
+        const response = await dataService.login(userLogin);
 
         if (!response)
             return res.status(401).send();
@@ -31,7 +36,7 @@ userController.login = async (req:Request, res:Response) => {
 
 userController.newUser = async (req:RequestTrated, res:Response) => {
     try {
-        
+
         const newUser:UserNew = {
             user_email: req.body.user_email,
             user_psw: req.body.user_psw,
