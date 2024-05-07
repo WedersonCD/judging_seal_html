@@ -19,4 +19,4 @@ router.get('/teste', (req, res) => {
 });
 
 
-module.exports = router;
+export default router;

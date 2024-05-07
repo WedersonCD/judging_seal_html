@@ -1,6 +1,6 @@
 import express from 'express'
 const router = express.Router();
-const UserController = require('../controllers/userController');
+import UserController from '../controllers/userController';
 
 // User authentication routes
 router.post('/login', UserController.login);
@@ -9,4 +9,4 @@ router.get('/profile', UserController.profile);
 
 
 
-module.exports = router;
+export default router;

@@ -87,4 +87,4 @@ utils.getStarLineChartOption = (seals:Seal[]):object => {
 
 }
 
-module.exports = utils
+export default utils

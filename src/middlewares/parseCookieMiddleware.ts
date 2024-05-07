@@ -22,4 +22,4 @@ async function parseCookieMiddleware(req:RequestTrated, res:Response, next:NextF
     next();
 }    
 
-module.exports = parseCookieMiddleware;
+export default parseCookieMiddleware;
