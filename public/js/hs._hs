@@ -45,8 +45,26 @@ behavior validateEmail
         call email.match(regexValidation) 
         if not result then
             add .invalid
+            set my style's backgroundColor to 'var(--color-white-sand)'
         else
             remove .invalid
+            set my style's backgroundColor to 'white'
         end
     end
+end
+
+behavior onValidateSetBackgroundWhite
+    
+    on focusout
+        set valueLenght to my value's length
+        if valueLenght > 0 then
+            remove .invalid
+            set my style's backgroundColor to 'white'
+
+        else
+            add .invalid
+            set my style's backgroundColor to 'var(--color-white-sand)'
+        end
+    end
+
 end

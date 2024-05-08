@@ -14,11 +14,11 @@
 
         <section class="input">
             <input type="email" id="user_email" name="user_email" placeholder='mail@gmail.com' _="install validateEmail"> 
-            <div class="flex-row">
-                <input type="text" id="user_name" name="user_name" placeholder='your name' class="display-none registerElement">   
-                <input type="text" id="user_nickName" name="user_nickName" placeholder='your nickname' class="display-none registerElement">   
+            <div class="flex-row justify-between">
+                <input type="text" id="user_name" name="user_name" placeholder='your name' class="display-none registerElement" _="install onValidateSetBackgroundWhite">   
+                <input type="text" id="user_nickName" name="user_nickName" placeholder='your nickname' class="display-none registerElement" _="install onValidateSetBackgroundWhite">   
             </div>
-            <input type="password" id="user_psw" name="user_psw" placeholder='password'>   
+            <input type="password" id="user_psw" name="user_psw" placeholder='password' _="install onValidateSetBackgroundWhite">   
         </section>
 
         <section class="buttons">
@@ -55,7 +55,7 @@
         ">
         Start Judging!!!!
         </div>
-        <div class="margin-top-5 clickable" _="
+        <div class="margin-top-5 clickable dosentHaveAccount" _="
         on click
             add .display-none
             add .display-none to previous <div/>
@@ -95,6 +95,14 @@
         ">
             Create Account
         </div>
+        <div class="clickable display-none registerElement" _="
+        on click
+            remove .display-none from .dosentHaveAccount
+            remove .display-none from .login
+            add .display-none to .registerElement
+        end">
+            <span><- cancel</span>
+        <div>
     </div>
         </section>
 
