@@ -66,11 +66,13 @@
         </div>
         <div class="registerElement margin-top-5 clickable display-none button-primary" _="
         on click
+            set user_email      to #user_email.value
+            set user_name       to #user_name.value
+            set user_nickName   to #user_nickName.value
+            set user_psw        to #user_psw.value
 
-            set user_email to #user_email.value
-            set user_psw to #user_psw.value
-            js(user_email,user_psw)
-                return 'user_email='+encodeURIComponent(user_email)+'&user_psw='+encodeURIComponent(user_psw)
+            js(user_email,user_name,user_nickName,user_psw)
+                return 'user_email='+encodeURIComponent(user_email)+'&user_psw='+encodeURIComponent(user_psw)+'&user_name='+encodeURIComponent(user_name)+'&user_nickName='+encodeURIComponent(user_nickName)
             end put the result into encodedLink
             fetch /new_user with method: 'POST', body: `${encodedLink}`
         end
