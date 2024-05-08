@@ -1,3 +1,4 @@
+import { UserNew,UserLogin } from "../types";
 
 const dataService:any = {}
 
@@ -41,12 +42,7 @@ dataService.deleteSeal = async (user_token:string, sealId:string) => {
     }
 }
 
-export interface UserPreRegister {
-    user_name:string,
-    user_psw:string
-}
-
-dataService.newUser = async (user:UserPreRegister) => {
+dataService.newUser = async (user:UserNew) => {
 
     try {
         const response = await fetch(`${process.env.DATA_API_URL}/users`, {
@@ -65,7 +61,7 @@ dataService.newUser = async (user:UserPreRegister) => {
     }
 }
 
-dataService.login = async (user:UserPreRegister) => {
+dataService.login = async (user:UserLogin) => {
 
     try {
         const response = await fetch(`${process.env.DATA_API_URL}/users/login`, {
